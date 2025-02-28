@@ -20,9 +20,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
   return (
     <a href={album.spotify_link}>
       <div className="text-black text-center w-full h-full place-content-center">
-        <div className="bg-cover bg-center rounded-lg w-full h-full sm:w-30 sm:h-30 md:w-50 md:h-50 lg:w-85 lg:h-85 mx-auto"
-          style={{ backgroundImage: `url(${album.image})` }}>
-        </div>
+        <img className="bg-cover bg-center rounded-lg w-full h-full sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src ={album.image}/>
         <h3 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold mt-2">{album.title}</h3>
         <h4 className="text-2lg sm:text-base md:text-2lg lg:text-3xl text-gray-400">{album.artist}</h4>
 
