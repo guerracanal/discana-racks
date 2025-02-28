@@ -10,7 +10,6 @@ import useEmblaCarousel from 'embla-carousel-react'
 import AlbumCard from "./AlbumCard";
 
 type PropType = {
-  slides: number[]
   options?: EmblaOptionsType
   title: string
   albums: Album[]
@@ -19,16 +18,19 @@ type PropType = {
 interface Album {
   id: string;
   title: string;
-  cover: string;
-}
-
-interface CarouselProps {
-  title: string;
-  albums: Album[];
+  image: string;
+  artist: string;       
+  genre: string[];      
+  subgenres: string[];  
+  duration: string;     
+  tracks: number;       
+  mood: string[];       
+  date_release: string; 
+  spotify_link: string; 
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options, albums, title} = props
+  const { options, albums, title} = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =

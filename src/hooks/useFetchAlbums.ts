@@ -4,7 +4,7 @@ export function useFetchAlbums(endpoint: string) {
   const [albums, setAlbums] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const getRandomPage = (maxPages = 3) => Math.floor(Math.random() * maxPages) + 1;
+  //const getRandomPage = (maxPages = 3) => Math.floor(Math.random() * maxPages) + 1;
   const page = 1
   const limit = 50
 

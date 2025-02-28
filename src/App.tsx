@@ -1,4 +1,3 @@
-//import Carousel from "./components/Carousel";
 import { useFetchAlbums } from "./hooks/useFetchAlbums";
 import EmblaCarousel from "./components/EmblaCarousel";
 import { EmblaOptionsType } from 'embla-carousel'
@@ -6,9 +5,7 @@ import { EmblaOptionsType } from 'embla-carousel'
 export default function App() {
 
   const OPTIONS: EmblaOptionsType = {}
-  const SLIDE_COUNT = 5
-  const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
-
+  
   const racks = [
     { title: "Relax", endpoint: "/mood/relajado" },
     { title: "Energico", endpoint: "/mood/Energético" },
@@ -32,7 +29,7 @@ export default function App() {
         const { albums, loading, error } = useFetchAlbums(endpoint);
         if (loading) return <p>Cargando {title}...</p>;
         if (error) return <p>Error cargando {title}: {error}</p>;
-        return <EmblaCarousel key={title} title={title} albums={albums} slides={SLIDES} options={OPTIONS} />
+        return <EmblaCarousel key={title} title={title} albums={albums} options={OPTIONS} />
       })}
     </div>
   );
