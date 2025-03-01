@@ -7,17 +7,19 @@ export default function App() {
   const OPTIONS: EmblaOptionsType = {}
   
   const racks = [
+    { title: "Novedades", endpoint: "/decade/2024" },
     { title: "Relax", endpoint: "/mood/relajado" },
     { title: "Energico", endpoint: "/mood/Energético" },
-    { title: "Novedades", endpoint: "/decade/2024" },
     { title: "Los 90", endpoint: "/decade/1990" },
     { title: "Cortitos", endpoint: "/duration/30" },
     { title: "Shoegaze & Dream Pop", endpoint: "/all-genres/shoegaze/dream pop" },
     { title: "Metal", endpoint: "/compilations/Acero" },
     { title: "Japón", endpoint: "/any-genres/J-Rock/j-pop/jpop" },
+    { title: "Españita", endpoint: "/country/es" },
     { title: "Épico", endpoint: "/compilations/dragón" },
     { title: "Folk", endpoint: "/all-genres/folk" },
     { title: "Jazz", endpoint: "/all-genres/jazz" },
+    { title: "Larga duración", endpoint: "/duration/120/500" },
     { title: "En vinilo", endpoint: "/format/vinilo" },
     { title: "En CD", endpoint: "/format/cd" },
   ];

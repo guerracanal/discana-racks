@@ -129,11 +129,17 @@
   .embla__slide__card img{
     width: 300px;
     height: 300px;
-
+  }
+  .embla__slide__card img.format{
+    width: 25px;
+    height: 25px;
   }
 }
 
   /* Tablet - 2 slides in viewport */
+  .embla__container {
+    height: 60rem;
+  }
   @media (min-width: 768px) {
     .embla__slide {
       flex: 0 0 50%;
@@ -152,5 +158,9 @@
     height: var(--slide-height);
     font-size: 4rem;
     font-weight: 600;
+  }
+  .embla__slide__card img.format{
+    width: 25px;
+    height: 25px;
   }
 }
