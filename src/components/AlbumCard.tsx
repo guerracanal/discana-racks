@@ -39,6 +39,9 @@ export default function AlbumCard({ album }: AlbumCardProps) {
   return (
     <a href={album.spotify_link}>
       <div className="text-black text-center w-full h-full place-content-center">
+        <p className="mood absolute top-3 right-2 text-center text-base text-gray-400">{album.mood.join(', ')}</p>
+
+
         <img className="bg-cover bg-center rounded-lg w-full h-full sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src ={album.image}/>
         <h3 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold mt-2">{album.title}</h3>
         <h4 className="text-2lg sm:text-base md:text-2lg lg:text-3xl text-gray-300">{album.artist}</h4>
@@ -46,7 +49,6 @@ export default function AlbumCard({ album }: AlbumCardProps) {
         <div className="mt-2 text-md sm:text-sm md:text-base lg:text-lg">
           <p className="text-gray-100">{album.date_release} - {album.duration} min ({album.tracks} tracks)</p>
           <p className="text-gray-100"><strong className="text-white text-2xl">{album.genre.join(', ')}</strong> <span>{album.subgenres.join(', ')}</span></p>
-          <p className="text-gray-100">{album.mood.join(', ')}</p>
         </div>
 
         {/* Icono del formato (CD/Vinilo) */}
