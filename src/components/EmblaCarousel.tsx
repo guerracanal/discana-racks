@@ -26,7 +26,9 @@ interface Album {
   tracks: number;       
   mood: string[];       
   date_release: string; 
-  spotify_link: string; 
+  spotify_link: string;
+  format: string[];
+  country: string;
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
