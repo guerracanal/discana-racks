@@ -64,7 +64,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
     <a href={album.spotify_link}>
       <div className="text-black text-center w-full h-full place-content-center">
         {isMoodLong ? (
-          <Marquee speed="20" className="absolute top-3 right-2">
+          <Marquee speed={20} className="absolute top-3 right-2">
             <p className="mood text-center text-base text-gray-400">&emsp;{album.mood.join(', ')}</p>
           </Marquee>
         ) : (
@@ -76,7 +76,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
         <img className="image bg-cover bg-center rounded-lg w-full h-full sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src={album.image} />
 
         {isTitleLong ? (
-          <Marquee speed="20">
+          <Marquee speed={20}>
             <h3 className="w-full title text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold mt-2">&emsp;{album.title}</h3>
           </Marquee>
         ) : (
@@ -86,7 +86,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
         )}
 
         {isArtistLong ? (
-          <Marquee speed="20">
+          <Marquee speed={20}>
             <h4 className="artist text-2lg sm:text-base md:text-2lg lg:text-3xl text-gray-300">&emsp;{album.artist}</h4>
           </Marquee>
         ) : (
@@ -99,7 +99,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
           <p className="text-gray-100">{album.date_release} - {album.duration} min ({album.tracks} tracks)</p>
           <p className="text-gray-100"><strong className="text-white text-2xl">{album.genre.join(', ')}</strong></p>
           {isSubgenresLong ? (
-            <Marquee speed="20">
+            <Marquee speed={20}>
               &emsp;<p className="text-gray-100">{album.subgenres.join(', ')}</p>
             </Marquee>
           ) : (
