@@ -6,7 +6,7 @@ export function useFetchAlbums(endpoint: string) {
   const [error, setError] = useState<string | null>(null);
   //const getRandomPage = (maxPages = 3) => Math.floor(Math.random() * maxPages) + 1;
   const page = 1
-  const limit = 50
+  const limit = 500
 
   useEffect(() => {
     const fetchData = async () => {
