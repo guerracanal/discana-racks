@@ -1,0 +1,20 @@
+[
+    { "title": "Novedades", "endpoint": "/decade/2024", "description": "Últimos lanzamientos musicales.", "order": 1 },
+    { "title": "Shoegaze", "endpoint": "/all-genres/shoegaze", "description": "Música con capas de sonido y guitarras etéreas.", "order": 2 },
+    { "title": "Metal", "endpoint": "/compilations/Acero", "description": "Selección de los mejores discos de metal.", "order": 3 },
+    { "title": "Rock Alternativo", "endpoint": "/genre/Rock Alternativo", "description": "Explora el rock fuera de lo convencional.", "order": 4 },
+    { "title": "Punk", "endpoint": "/any-genres/Punk Rock", "description": "La energía cruda del punk en su máxima expresión.", "order": 5 },
+    { "title": "Grunge", "endpoint": "/any-genres/Grunge", "description": "El sonido rebelde de los 90.", "order": 6 },
+    { "title": "Japón", "endpoint": "/any-genres/J-Rock/j-pop/jpop", "description": "Descubre el rock y pop japonés.", "order": 7 },
+    { "title": "Rock Español", "endpoint": "/any-genres/Rock Urbano", "description": "El mejor rock en español.", "order": 8 },
+    { "title": "Oldies", "endpoint": "/decade/1960", "description": "Clásicos atemporales de los años 60.", "order": 9 },
+    { "title": "Épico", "endpoint": "/compilations/dragón", "description": "Canciones con un sonido poderoso y legendario.", "order": 10 },
+    { "title": "Funk", "endpoint": "/all-genres/funk", "description": "Ritmos llenos de groove y energía.", "order": 11 },
+    { "title": "Folk", "endpoint": "/genre/folk", "description": "Melodías acústicas con raíces tradicionales.", "order": 12 },
+    { "title": "Jazz", "endpoint": "/all-genres/jazz", "description": "Improvisación y elegancia en su máxima expresión.", "order": 13 },
+    { "title": "RHCP", "endpoint": "/artist/Red Hot Chili Peppers", "description": "Lo mejor de los Red Hot Chili Peppers.", "order": 14 },
+    { "title": "Cortitos", "endpoint": "/duration/30", "description": "Canciones cortas pero intensas.", "order": 15 },
+    { "title": "En vinilo", "endpoint": "/format/vinilo", "description": "Álbumes disponibles en formato vinilo.", "order": 16 },
+    { "title": "En CD", "endpoint": "/format/cd", "description": "Discos disponibles en formato CD.", "order": 17 }
+  ]
+  
