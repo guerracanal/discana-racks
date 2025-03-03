@@ -52,7 +52,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
         {albums
-          .sort(() => Math.random() - 0.5)  // Reordena los elementos aleatoriamente
+          //.sort(() => Math.random() - 0.5)  // Reordena los elementos aleatoriamente
           .map((album) => (
             <div className="embla__slide" key={album.id}>
               <div className="embla__slide__card"><AlbumCard album={album} /></div>

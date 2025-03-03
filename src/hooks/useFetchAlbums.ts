@@ -12,7 +12,7 @@ export function useFetchAlbums(endpoint: string) {
     const fetchData = async () => {
       try {
         // Construir la URL según el endpoint
-        const url = `https://discana-api-346921755711.europe-west1.run.app/albums${endpoint}?limit=${limit}&page=${page}`;
+        const url = `${import.meta.env.VITE_API_URL}/albums${endpoint}?limit=${limit}&page=${page}`;
         const response = await fetch(url);
 
         if (!response.ok) throw new Error("Error al obtener los datos");

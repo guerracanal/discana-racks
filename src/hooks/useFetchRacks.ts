@@ -8,7 +8,7 @@ export function useFetchRacks() {
   useEffect(() => {
     const fetchRacks = async () => {
       try {
-        const response = await fetch("https://discana-api-346921755711.europe-west1.run.app/racks");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/racks`);
         if (!response.ok) throw new Error("Error al obtener los racks");
 
         const data = await response.json();
