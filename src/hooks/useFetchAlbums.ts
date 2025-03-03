@@ -18,6 +18,9 @@ export function useFetchAlbums(endpoint: string) {
         if (!response.ok) throw new Error("Error al obtener los datos");
 
         const data = await response.json();
+
+        // Ordenamos data de manera aleatoria
+
         setAlbums(data);
       } catch (err) {
         setError((err as Error).message);
