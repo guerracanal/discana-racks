@@ -1,32 +1,33 @@
 import { useState, useEffect } from "react";
 
 export function useFetchRacks() {
-  const [racks, setRacks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+    const [racks, setRacks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchRacks = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/racks`);
-        if (!response.ok) throw new Error("Error al obtener los racks");
+    useEffect(() => {
+        const fetchRacks = async () => {
+            try {
 
-        const data = await response.json();
+                const response = await fetch(import.meta.env.VITE_API_URL + '/api/racks');
+                if (!response.ok) throw new Error("Error al obtener los racks");
 
-        // Ordenamos los racks por el campo `order`
-        data.sort((a: { order: number }, b: { order: number }) => a.order - b.order);
-        
+                const data = await response.json();
 
-        setRacks(data);
-      } catch (err) {
-        setError((err as Error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
+                // Ordenamos los racks por el campo `order`
+                data.sort((a: { order: number }, b: { order: number }) => a.order - b.order);
 
-    fetchRacks();
-  }, []);
 
-  return { racks, loading, error };
+                setRacks(data);
+            } catch (err) {
+                setError((err as Error).message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchRacks();
+    }, []);
+
+    return { racks, loading, error };
 }

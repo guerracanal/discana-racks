@@ -9,10 +9,10 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      '/api': {  // Cambiamos el endpoint base
+      '/api': {
         target: 'https://discana-api-346921755711.europe-west1.run.app',
         changeOrigin: true,
-        secure: true,  // Habilitamos SSL
+        secure: false,  // Mantener en false para desarrollo con certificados autofirmados
         rewrite: (path) => path.replace(/^\/api/, ''),
         ws: true
       }
