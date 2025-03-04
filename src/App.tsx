@@ -32,7 +32,7 @@ const LazyRack = ({ rack, options }: { rack: Rack; options: EmblaOptionsType }) 
 };
 
 export default function App() {
-  const OPTIONS: EmblaOptionsType = {};
+  const OPTIONS: EmblaOptionsType = {align: 'start', dragFree: true, loop: true };
   const { racks, loading, error } = useFetchRacks();
 
   if (loading) return <p>Cargando racks...</p>;

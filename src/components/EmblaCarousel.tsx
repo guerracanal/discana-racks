@@ -1,11 +1,15 @@
 import React from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
-import { DotButton, useDotButton } from './EmblaCarouselDotButton'
+//import { DotButton, useDotButton } from './EmblaCarouselDotButton'
 import {
   PrevButton,
   NextButton,
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
+import {
+  SelectedSnapDisplay,
+  useSelectedSnapDisplay
+} from './EmblaCarouselSelectedSnapDisplay'
 import useEmblaCarousel from 'embla-carousel-react'
 import AlbumCard from "./AlbumCard";
 
@@ -34,10 +38,10 @@ interface Album {
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { options, albums, title} = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
-
+/*
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi)
-
+*/
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -45,15 +49,15 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
+  const { selectedSnap, snapCount } = useSelectedSnapDisplay(emblaApi)
+
   return (
     <section className="embla">
       <h2 className="text-5xl font-bold mb-2">{title}</h2>
       <p>Ver más →</p>
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-        {albums
-          //.sort(() => Math.random() - 0.5)  // Reordena los elementos aleatoriamente
-          .map((album) => (
+        {albums.map((album) => (
             <div className="embla__slide" key={album.id}>
               <div className="embla__slide__card"><AlbumCard album={album} /></div>
             </div>
@@ -67,6 +71,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
 
+        <SelectedSnapDisplay
+          selectedSnap={selectedSnap}
+          snapCount={snapCount}
+        />
+
+        {/* 
         <div className="embla__dots">
           {scrollSnaps.map((_, index) => (
             <DotButton
@@ -78,6 +88,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             />
           ))}
         </div>
+        */}
       </div>
     </section>
   )
