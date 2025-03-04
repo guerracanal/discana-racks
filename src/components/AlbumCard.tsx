@@ -87,7 +87,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
         <div className="box w-5/6 mx-auto">
           {isTitleLong ? (
             <Marquee speed={20}>
-              <h3 className="w-full title sm:text-xl md:text-2xl lg:text-3xl font-bold">&emsp;{album.title}</h3>
+              <h3 className="title sm:text-xl md:text-2xl lg:text-3xl font-bold">&emsp;{album.title}</h3>
             </Marquee>
           ) : (
             <h3 className="title sm:text-xl md:text-2xl lg:text-3xl font-bold">
@@ -97,17 +97,17 @@ export default function AlbumCard({ album }: AlbumCardProps) {
 
           {isArtistLong ? (
             <Marquee speed={20}>
-              <h4 className="artist text-2lg sm:text-base md:text-2lg lg:text-3xl text-gray-300">&emsp;{album.artist}</h4>
+              <h4 className="artist sm:text-base md:text-2lg lg:text-3xl text-gray-300">&emsp;{album.artist}</h4>
             </Marquee>
           ) : (
-            <h4 className="artist text-2lg sm:text-base md:text-2lg lg:text-3xl text-gray-300">
+            <h4 className="artist sm:text-base md:text-2lg lg:text-3xl text-gray-300">
               {album.artist}
             </h4>
           )}
 
-          <div className="text-md sm:text-sm md:text-base lg:text-lg">
-            <p className="text-gray-100">{album.date_release} - {album.duration} min ({album.tracks} tracks)</p>
-            <p className="text-gray-100"><strong className="text-white text-2xl">{album.genre.join(', ')}</strong></p>
+          <div className="sm:text-sm md:text-base lg:text-lg">
+            <p className="text-2xl sm:text-sm md:text-base lg:text-lg text-gray-100">{album.date_release} - {album.duration} min ({album.tracks} tracks)</p>
+            <p className="text-white"><strong>{album.genre.join(', ')}</strong></p>
 
             {isSubgenresLong ? (
               <Marquee speed={20}>
