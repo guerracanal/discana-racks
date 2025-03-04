@@ -12,7 +12,7 @@ export function useFetchAlbums(endpoint: string) {
     const fetchData = async () => {
       try {
         // Construir la URL según el endpoint
-        const url = import.meta.env.VITE_API_URL + '/api/albums' + endpoint + "?limit=" + limit + "&page=" + page;
+        const url = import.meta.env.VITE_API_URL + '/api/albums/' + endpoint + "?limit=" + limit + "&page=" + page;
 
         console.log("API URL:", import.meta.env.VITE_API_URL);
         console.log(url);

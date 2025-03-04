@@ -9,7 +9,7 @@ export function useFetchRacks() {
         const fetchRacks = async () => {
             try {
 
-                const url = import.meta.env.VITE_API_URL + '/api/racks'
+                const url = import.meta.env.VITE_API_URL + '/api/racks/'
 
                 console.log("API URL:", import.meta.env.VITE_API_URL);
                 console.log(url);
