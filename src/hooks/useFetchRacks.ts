@@ -9,7 +9,14 @@ export function useFetchRacks() {
         const fetchRacks = async () => {
             try {
 
-                const response = await fetch(import.meta.env.VITE_API_URL + '/api/racks');
+                const url = import.meta.env.VITE_API_URL + '/api/racks'
+
+                const response = await fetch(url,{
+                    /*headers: {
+                        'X-Forwarded-Proto': 'https'  // Forza HTTPS en el backend
+                      }*/
+                });
+                
                 if (!response.ok) throw new Error("Error al obtener los racks");
 
                 const data = await response.json();

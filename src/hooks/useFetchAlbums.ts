@@ -12,9 +12,13 @@ export function useFetchAlbums(endpoint: string) {
     const fetchData = async () => {
       try {
         // Construir la URL según el endpoint
-        const url = `${import.meta.env.VITE_API_URL + '/api/albums'}${endpoint}?limit=${limit}&page=${page}`;
+        const url = import.meta.env.VITE_API_URL + '/api/albums' + endpoint + "?limit=" + limit + "&page=" + page;
 
-        const response = await fetch(url);
+        const response = await fetch(url,{
+          /*headers: {
+            'X-Forwarded-Proto': 'https'  // Forza HTTPS en el backend
+          }*/
+        });
 
         if (!response.ok) throw new Error("Error al obtener los datos");
 
