@@ -11,7 +11,6 @@ export function useFetchRacks() {
 
                 const url = import.meta.env.VITE_API_URL + '/api/racks/'
 
-                console.log("API URL:", import.meta.env.VITE_API_URL);
                 console.log(url);
 
                 const response = await fetch(url);
@@ -20,9 +19,7 @@ export function useFetchRacks() {
 
                 const data = await response.json();
 
-                // Ordenamos los racks por el campo `order`
                 data.sort((a: { order: number }, b: { order: number }) => a.order - b.order);
-
 
                 setRacks(data);
             } catch (err) {

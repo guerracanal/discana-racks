@@ -81,7 +81,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
             )}
           </div>
         </div>
-        <img className="cover bg-cover bg-center rounded-lg w-full h-full sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src={album.image} />
+        <img className="cover bg-cover bg-center rounded-lg w-full h-full sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src={album.image} loading="lazy" alt={album.title} />
 
         <div className="box w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto">
           {isTitleLong ? (
@@ -133,6 +133,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
                 key={index}
                 src={icon}
                 alt="Formato"
+                loading="lazy"
                 className="w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
               />
             ))}

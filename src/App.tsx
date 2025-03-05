@@ -32,12 +32,12 @@ const LazyRack = ({
   options: EmblaOptionsType;
 }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     rootMargin: "200px",
   });
 
   return (
-    <div ref={ref} className="">
+    <div ref={ref} className="min-h-100">
       {inView && (
         <RackCarousel
           title={rack.title}
