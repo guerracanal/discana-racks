@@ -67,24 +67,23 @@ export default function AlbumCard({ album }: AlbumCardProps) {
 
   return (
     <a className="link" href={album.spotify_link}>
-      <div className="w-full h-full place-content-center">
-
-      <div className="top absolute top-3">
-        <div className="w-5/6 mx-auto flex items-center justify-between">
-          {isMoodLong ? (
-            <Marquee speed={20} className="">
-              <p className="text-center text-base text-gray-400">&emsp;{album.mood.join(', ')}</p>
-            </Marquee>
-          ) : (
-            <p className="text-center text-base text-gray-400">
-              {album.mood.join(', ')}
-            </p>
-          )}
+      <div className="card text-sm w-full h-full place-content-center">
+        <div className="top absolute top-3">
+          <div className="mood w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto flex items-center justify-between">
+            {isMoodLong ? (
+              <Marquee speed={20} className="">
+                <p className="text-center text-base">&emsp;{album.mood.join(', ')}</p>
+              </Marquee>
+            ) : (
+              <p className="text-center text-base">
+                {album.mood.join(', ')}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
         <img className="cover bg-cover bg-center rounded-lg w-full h-full sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src={album.image} />
 
-        <div className="box w-5/6 mx-auto">
+        <div className="box w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto">
           {isTitleLong ? (
             <Marquee speed={20}>
               <h3 className="title sm:text-xl md:text-2xl lg:text-3xl font-bold">&emsp;{album.title}</h3>
@@ -97,24 +96,24 @@ export default function AlbumCard({ album }: AlbumCardProps) {
 
           {isArtistLong ? (
             <Marquee speed={20}>
-              <h4 className="artist sm:text-base md:text-2lg lg:text-3xl text-gray-300">&emsp;{album.artist}</h4>
+              <h4 className="artist sm:text-base md:text-2lg lg:text-3xl">&emsp;{album.artist}</h4>
             </Marquee>
           ) : (
-            <h4 className="artist sm:text-base md:text-2lg lg:text-3xl text-gray-300">
+            <h4 className="artist sm:text-base md:text-2lg lg:text-3xl">
               {album.artist}
             </h4>
           )}
 
           <div className="sm:text-sm md:text-base lg:text-lg">
-            <p className="text-2xl sm:text-sm md:text-base lg:text-lg text-gray-100">{album.date_release} - {album.duration} min ({album.tracks} tracks)</p>
-            <p className="text-white"><strong>{album.genre.join(', ')}</strong></p>
+            <p className="info sm:text-sm md:text-base lg:text-lg">{album.date_release} - {album.duration} min ({album.tracks} tracks)</p>
+            <p className="genre sm:text-sm md:text-base lg:text-lg"><strong>{album.genre.join(', ')}</strong></p>
 
             {isSubgenresLong ? (
               <Marquee speed={20}>
-                &emsp;<p className="text-gray-100">{album.subgenres.join(', ')}</p>
+                &emsp;<p className="subgenres">{album.subgenres.join(', ')}</p>
               </Marquee>
             ) : (
-              <p className="text-gray-100">
+              <p className="subgenres">
                 {album.subgenres.join(', ')}
               </p>
             )}
@@ -124,7 +123,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
 
         {/* Contenedor de bandera + iconos de formato */}
         <div className="absolute bottom-2 left-8 right-0 flex items-center justify-between px-2">
-          <span className="text-3xl leading-none">
+          <span className="text-3xl sm:text-xl md:text-2xl lg:text-3xl leading-none">
             {getFlagEmoji(album.country)}
           </span>
 
@@ -135,7 +134,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
                 src={icon}
                 alt="Formato"
                 className="w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
-                />
+              />
             ))}
           </div>
         </div>

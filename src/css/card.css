@@ -1,0 +1,52 @@
+/*
+#101010	(16,16,16)
+#fefefe	(254,254,254)
+#ee514b	(238,81,75)
+#bebebe	(190,190,190)
+#4a4a4a	(74,74,74)
+
+#872434	(135,36,52)
+#7e696d	(126,105,109)
+#fefefe	(254,254,254)
+#eeeeee	(238,238,238)
+#000000	(0,0,0)
+*/
+
+.card{
+    --color-card: #eeeeee;
+    --color-title: #ee514b;
+    --color-artist: #7e696d;
+    --color-info: #7e696d;
+    --color-genre: #ee514b;
+    --color-subgenres: #7e696d;
+    --color-mood: #7e696d;
+}
+
+.embla__slide__card{
+    --color-card: ;
+    background-color: #eeeeee;
+}
+
+.card .title{
+    color: var(--color-title);
+}
+
+.card .artist{
+    color: var(--color-artist);
+}
+
+.card .mood{
+    color: var(--color-mood);
+}
+
+.card .info{
+    color: var(--color-info);
+}
+
+.card .genre{
+    color: var(--color-genre);
+}
+
+.card .subgenres{
+    color: var(--color-subgenres);
+}

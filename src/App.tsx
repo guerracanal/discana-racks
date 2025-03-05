@@ -37,7 +37,7 @@ const LazyRack = ({
   });
 
   return (
-    <div ref={ref} className="min-h-[400px]">
+    <div ref={ref} className="">
       {inView && (
         <RackCarousel
           title={rack.title}
@@ -62,7 +62,7 @@ export default function App() {
   if (error) return <p>Error cargando racks: {error}</p>;
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-gray-900">
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-lg h-16 flex items-center">
         <div className="max-w-10xl mx-auto flex items-center justify-between w-full px-4">
           <div className="flex items-center space-x-3">
