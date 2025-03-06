@@ -1,4 +1,5 @@
   .embla {
+    position: relative; /* Agregado para que los botones se posicionen de forma relativa a cada carrusel */
     max-width: 90%;
     margin: 3rem auto;
     --slide-height: 100%;
@@ -8,6 +9,7 @@
 
   .embla__viewport {
     overflow: hidden;
+    position: relative; /* Contenedor de referencia para posicionar los botones */
   }
 
   .embla__container {
@@ -52,27 +54,35 @@
   }
 
   .embla__button {
-    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: transparent;
-    touch-action: manipulation;
-    display: inline-flex;
-    text-decoration: none;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
+    position: absolute;
+    top: 0;
+    bottom: 0;
     width: 3.6rem;
-    height: 3.6rem;
-    z-index: 1;
-    border-radius: 50%;
-    color: var(--text-body);
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+    border: none;
+    cursor: pointer;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.3s ease;
   }
+  
+  /* Posicionar cada botón en el lateral */
+  .embla__button--prev {
+    left: 0;
+  }
+  .embla__button--next {
+    right: 0;
+  }
+  
+  /* Al hacer hover en el carrusel se muestran los botones */
+  .embla:hover .embla__button {
+    opacity: 1;
+  }
+  
+  
 
   .embla__button:disabled {
     color: var(--detail-high-contrast);
@@ -89,50 +99,33 @@
     color: var(--text-low-contrast);
     font-weight: 600;
   }
+
+  .embla__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
   
-/*
-  .embla__dots {
-    display: none;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
-  }
-
-  .embla__dot {
-    -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: transparent;
-    touch-action: manipulation;
-    display: inline-flex;
-    text-decoration: none;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    width: 2.6rem;
-    height: 2.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-  }
-
-  .embla__dot:after {
+  .embla__progress {
+    border-radius: 1.8rem;
     box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-    width: 1.4rem;
-    height: 1.4rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    content: '';
+    background-color: var(--background-site);
+    position: relative;
+    height: 0.6rem;
+    width: 13rem;  /* O ajusta a la medida que necesites */
+    overflow: hidden;
   }
-
-  .embla__dot--selected:after {
-    box-shadow: inset 0 0 0 0.2rem var(--text-body);
+  
+  .embla__progress__bar {
+    background-color: var(--text-body);
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    transition: transform 0.3s ease;
   }
-    */
 
   @media (max-width: 700px) {
 

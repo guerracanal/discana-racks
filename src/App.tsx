@@ -21,7 +21,7 @@ const RackCarousel = ({
     return <div className="h-64 animate-pulse bg-gray-800 rounded" />;
   if (error) return <p>Error cargando {title}: {error}</p>;
 
-  return <EmblaCarousel title={title} albums={albums} options={options} />;
+  return <EmblaCarousel title={title} albums={albums} options={options} endpoint={endpoint} />;
 };
 
 const LazyRack = ({
@@ -58,9 +58,95 @@ export default function App() {
   const { racks, loading, error } = useFetchRacks();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  if (loading) return <p>Cargando racks...</p>;
-  if (error) return <p>Error cargando racks: {error}</p>;
+  
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-900">
+        <div className="text-center text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-16 h-16 mx-auto animate-spin text-gray-400"
+            viewBox="0 0 64 64"
+          >
+            <g transform="rotate(-10 32 32)">
+              <rect
+                x="12"
+                y="10"
+                width="40"
+                height="44"
+                rx="6"
+                ry="6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </g>
+            <g>
+              <circle
+                cx="32"
+                cy="32"
+                r="10"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <path
+                d="M32 22 a10 10 0 0 1 0 20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="round"
+              />
+              <path
+                d="M32 24 a8 8 0 0 1 0 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="round"
+              />
+              <circle
+                cx="32"
+                cy="32"
+                r="3"
+                fill="currentColor"
+                stroke="none"
+              />
+            </g>
+          </svg>
+          <p className="mt-4 text-lg font-semibold text-gray-400">Cargando colección...</p>
+        </div>
+      </div>
+    );
+  }
+  
 
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-900">
+        <div className="text-center text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-16 h-16 mx-auto text-red-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12" y2="8" />
+          </svg>
+          <p className="mt-4 text-lg font-semibold text-red-400">
+            Error cargando: {error}
+          </p>
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="min-h-screen bg-gray-900">
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-lg h-16 flex items-center">

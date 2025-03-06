@@ -1,47 +1,41 @@
-import React from 'react'
-import { EmblaOptionsType } from 'embla-carousel'
-//import { DotButton, useDotButton } from './EmblaCarouselDotButton'
+import React, { useCallback, useEffect, useState } from 'react'
+import { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel'
+import useEmblaCarousel from 'embla-carousel-react'
+import AlbumCard from "./AlbumCard";
 import {
   PrevButton,
   NextButton,
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
-import {
-  SelectedSnapDisplay,
-  useSelectedSnapDisplay
-} from './EmblaCarouselSelectedSnapDisplay'
-import useEmblaCarousel from 'embla-carousel-react'
-import AlbumCard from "./AlbumCard";
 
 type PropType = {
   options?: EmblaOptionsType
   title: string
   albums: Album[]
+  endpoint: string
 }
 
 interface Album {
   id: string;
   title: string;
   image: string;
-  artist: string;       
-  genre: string[];      
-  subgenres: string[];  
-  duration: string;     
-  tracks: number;       
-  mood: string[];       
-  date_release: string; 
+  artist: string;
+  genre: string[];
+  subgenres: string[];
+  duration: string;
+  tracks: number;
+  mood: string[];
+  date_release: string;
   spotify_link: string;
   format: string[];
   country: string;
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options, albums, title} = props
+  const { options, albums, title, endpoint } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
-/*
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi)
-*/
+  const [scrollProgress, setScrollProgress] = useState(0)
+
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -49,46 +43,78 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
-  const { selectedSnap, snapCount } = useSelectedSnapDisplay(emblaApi)
+  const onScroll = useCallback((emblaApi: EmblaCarouselType) => {
+    const progress = Math.max(0, Math.min(1, emblaApi.scrollProgress()))
+    // setScrollProgress(progress * 100) // sin loop
+    setScrollProgress((prevProgress) => {
+      if (Math.abs(prevProgress - progress * 100) > 0.5) {
+        return progress * 100;
+      }
+      return prevProgress;
+    });
+  }, [])
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    onScroll(emblaApi)
+    emblaApi
+      .on('reInit', onScroll)
+      .on('scroll', onScroll)
+      .on('slideFocus', onScroll)
+  }, [emblaApi, onScroll])
 
   return (
     <section className="embla">
-      <h2 className="text-5xl font-bold mb-2">{title}</h2>
-      <p>Ver más →</p>
+      <div className="embla__header flex items-center justify-between">
+        <h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
+          {title}
+          <span className="more text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2">
+            <a href={endpoint} className="flex items-center space-x-1">
+              <span>ver más</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 transition-colors duration-200"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </a>
+          </span>
+        </h2>
+
+        <div className="embla__progress">
+          <div
+            className="embla__progress__bar"
+            style={{ transform: `translate3d(${scrollProgress}%, 0, 0)` }}
+          />
+        </div>
+      </div>
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-        {albums.map((album) => (
-            <div className="embla__slide" key={title+album.artist+album.title}>
-              <div className="embla__slide__card"><AlbumCard album={album} /></div>
+          {albums.map((album) => (
+            <div className="embla__slide" key={title + album.artist + album.title}>
+              <div className="embla__slide__card">
+                <AlbumCard album={album} />
+              </div>
             </div>
           ))}
         </div>
-      </div>
 
-      <div className="embla__controls">
-        <div className="embla__buttons">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
-
-        <SelectedSnapDisplay
-          selectedSnap={selectedSnap}
-          snapCount={snapCount}
+        <PrevButton
+          onClick={onPrevButtonClick}
+          disabled={prevBtnDisabled}
+          className="embla__button embla__button--prev"
         />
-
-        {/* 
-        <div className="embla__dots">
-          {scrollSnaps.map((_, index) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected' : ''
-              )}
-            />
-          ))}
-        </div>
-        */}
+        <NextButton
+          onClick={onNextButtonClick}
+          disabled={nextBtnDisabled}
+          className="embla__button embla__button--next"
+        />
       </div>
     </section>
   )

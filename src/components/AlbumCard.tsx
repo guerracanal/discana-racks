@@ -38,8 +38,8 @@ export default function AlbumCard({ album }: AlbumCardProps) {
 
   // Ajusta estos valores según tu preferencia
   const MAX_TITLE_LENGTH = 18;
-  const MAX_ARTIST_LENGTH = 18;
-  const MAX_MOOD_LENGTH = 25;
+  const MAX_ARTIST_LENGTH = 15;
+  const MAX_MOOD_LENGTH = 20;
   const MAX_SUBGENRES_LENGTH = 20;
 
   // Estados para indicar si el texto supera el umbral de caracteres
@@ -71,7 +71,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
         <div className="top absolute top-3">
           <div className="mood w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto flex items-center justify-between">
             {isMoodLong ? (
-              <Marquee speed={20} className="">
+              <Marquee speed={30}>
                 <p className="text-center text-base">&emsp;{album.mood.join(', ')}</p>
               </Marquee>
             ) : (
@@ -85,7 +85,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
 
         <div className="box w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto">
           {isTitleLong ? (
-            <Marquee speed={20}>
+            <Marquee speed={10}>
               <h3 className="title sm:text-xl md:text-2xl lg:text-3xl font-bold">&emsp;{album.title}</h3>
             </Marquee>
           ) : (
@@ -95,7 +95,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
           )}
 
           {isArtistLong ? (
-            <Marquee speed={20}>
+            <Marquee speed={10}>
               <h4 className="artist sm:text-base md:text-2lg lg:text-3xl">&emsp;{album.artist}</h4>
             </Marquee>
           ) : (
@@ -109,7 +109,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
             <p className="genre sm:text-sm md:text-base lg:text-lg"><strong>{album.genre.join(', ')}</strong></p>
 
             {isSubgenresLong ? (
-              <Marquee speed={20}>
+              <Marquee speed={10}>
                 &emsp;<p className="subgenres">{album.subgenres.join(', ')}</p>
               </Marquee>
             ) : (
