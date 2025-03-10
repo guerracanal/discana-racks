@@ -96,44 +96,7 @@
     "description": "Discos cortos",
     "order": 23
   },
-  {
-    "title": "SQUARE ENIX",
-    "endpoint": "compilations/squareenix",
-    "description": "SQUARE ENIX",
-    "order": 24
-  },
-  {
-    "title": "RHCP",
-    "endpoint": "artist/Red Hot Chili Peppers",
-    "description": "Red Hot Chili Peppers.",
-    "order": 30
-  },
-  {
-    "title": "Weezer",
-    "endpoint": "artist/Weezer",
-    "description": "Weezer",
-    "order": 31
-  },
-  {
-    "title": "Extremoduro",
-    "endpoint": "artist/extremoduro",
-    "description": "Extremoduro",
-    "order": 32
-  },
-  {
-    "title": "Queen",
-    "endpoint": "artist/queen",
-    "description": "Queen",
-    "order": 36
-  },
-  {
-    "title": "Beatles",
-    "endpoint": "artist/beatles",
-    "description": "Los beatles",
-    "order": 37
-  },
-
-
+  
   {
     "title": "Cumplen 20 años",
     "endpoint": "year/2005",
@@ -205,17 +168,5 @@
     "endpoint": "mood/energético",
     "description": "Mood energetico",
     "order": 61
-  },
-  {
-    "title": "En CD",
-    "endpoint": "format/cd",
-    "description": "Discos disponibles en formato CD.",
-    "order": 100
-  },
-  {
-    "title": "En vinilo",
-    "endpoint": "format/vinilo",
-    "description": "Álbumes disponibles en formato vinilo.",
-    "order": 101
   }
 ]

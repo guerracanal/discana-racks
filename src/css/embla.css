@@ -72,9 +72,11 @@
   /* Posicionar cada botón en el lateral */
   .embla__button--prev {
     left: 0;
+    border-radius: 0 1rem 1rem 0;
   }
   .embla__button--next {
     right: 0;
+    border-radius: 1rem 0 0 1rem;
   }
   
   /* Al hacer hover en el carrusel se muestran los botones */
@@ -82,8 +84,6 @@
     opacity: 1;
   }
   
-  
-
   .embla__button:disabled {
     color: var(--detail-high-contrast);
   }

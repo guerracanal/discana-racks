@@ -2,26 +2,8 @@ import { useState, useEffect } from "react";
 import cdIcon from "../assets/icons/cd.png";
 import vinylIcon from "../assets/icons/vinyl.png";
 import Marquee from "react-fast-marquee";
+import {AlbumCardProps } from '../types/album';
 
-interface Album {
-  id: string;
-  title: string;
-  image: string;
-  artist: string;
-  genre: string[];
-  subgenres: string[];
-  duration: string;
-  tracks: number;
-  mood: string[];
-  date_release: string;
-  spotify_link: string;
-  format: string[];
-  country: string;
-}
-
-interface AlbumCardProps {
-  album: Album;
-}
 
 const getFlagEmoji = (countryCode: string) => {
   // Soporte especial para Escocia

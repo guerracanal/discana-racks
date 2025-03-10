@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import AlbumCard from "./AlbumCard";
+import { Album } from '../types/album';
+
 import {
   PrevButton,
   NextButton,
@@ -13,22 +15,6 @@ type PropType = {
   title: string
   albums: Album[]
   endpoint: string
-}
-
-interface Album {
-  id: string;
-  title: string;
-  image: string;
-  artist: string;
-  genre: string[];
-  subgenres: string[];
-  duration: string;
-  tracks: number;
-  mood: string[];
-  date_release: string;
-  spotify_link: string;
-  format: string[];
-  country: string;
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
