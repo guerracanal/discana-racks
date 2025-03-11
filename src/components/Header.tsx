@@ -180,13 +180,8 @@ const Header = () => {
                 </a>
               </li>
               <li>
-                <a href="/vinilo" className="hover:text-gray-300">
-                  En Vinilo
-                </a>
-              </li>
-              <li>
-                <a href="/cd" className="hover:text-gray-300">
-                  En CD
+                <a href="/pendientes" className="hover:text-gray-300">
+                  Pendientes
                 </a>
               </li>
               <li>
