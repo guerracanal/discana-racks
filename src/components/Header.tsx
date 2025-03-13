@@ -1,164 +1,95 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { FaInfoCircle, FaRecordVinyl, FaSearch, FaSpotify, FaStarOfLife } from "react-icons/fa";
+import logo from "../assets/logo.svg"; // Ajusta la ruta de tu archivo SVG
+import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
+import { useSearchParams } from 'react-router-dom';
 
 const Header = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filter = searchParams.get('filter') || 'all';
+
+  const handleFilterChange = (option: "all" | "disc" | "spotify") => {
+    setSearchParams({ filter: option }); // Actualiza la URL
+  };
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-lg h-16 flex items-center">
         <div className="max-w-10xl mx-auto flex items-center justify-between w-full px-4">
+          {/* Logo y Titulo */}
           <div className="flex items-center space-x-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 64 64"
-              className="w-14 h-14 text-white"
-            >
-              <g transform="rotate(-10 32 32)">
-                <rect
-                  x="12"
-                  y="10"
-                  width="40"
-                  height="44"
-                  rx="6"
-                  ry="6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-              </g>
-              <g>
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="10"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M32 22 a10 10 0 0 1 0 20"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M32 24 a8 8 0 0 1 0 16"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                />
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="3"
-                  fill="currentColor"
-                  stroke="none"
-                />
-              </g>
-            </svg>
+            <img src={logo} alt="Logo" className="logo w-14 h-14" />
             <div>
-              <h1 className="text-3xl font-bold">Discana</h1>
-              <p className="text-sm italic">Personal Record Collection</p>
+              <h1 className="text-3xl font-bold text-white">Discana</h1>
+              <p className="text-sm italic text-gray-400">Personal Record Collection</p>
             </div>
           </div>
 
-          <nav className="hidden md:flex">
+          {/* Menú de navegación - Desktop */}
+          <nav className="hidden md:flex flex-grow justify-start space-x-4 m-15">
             <ul className="flex space-x-4">
               <li>
-                <a href="/" className="hover:text-gray-300">
+                <a href="/" className="hover:text-gray-300 text-white">
                   Inicio
                 </a>
               </li>
               <li>
-                <a href="/pendientes" className="hover:text-gray-300">
-                  Pendientes
+                <a href="/types" className="hover:text-gray-300 text-white">
+                  Colección
                 </a>
               </li>
               <li>
-                <a href="/explorar" className="hover:text-gray-300">
-                  Explorar
+                <a href="/pendientes" className="hover:text-gray-300 text-white">
+                  Pendientes
                 </a>
               </li>
             </ul>
           </nav>
 
-          {/* Búsqueda e ícono de info */}
+          {/* Selector de Filtro y Buscador */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Botones de filtro */}
+            <button
+              className={`filter-option ${filter === "all" ? "text-white" : "text-gray-400"}`}
+              onClick={() => handleFilterChange("all")}
+            >
+              <FaStarOfLife />
+            </button>
+            <button
+              className={`filter-option ${filter === "disc" ? "text-white" : "text-gray-400"}`}
+              onClick={() => handleFilterChange("disc")}
+            >
+              <FaRecordVinyl size={20} />
+            </button>
+            <button
+              className={`filter-option ${filter === "spotify" ? "text-white" : "text-gray-400"}`}
+              onClick={() => handleFilterChange("spotify")}
+            >
+              <FaSpotify size={20} />
+            </button>
+
+            {/* Búsqueda */}
             <div className="flex items-center border border-gray-600 rounded px-2">
               <input
                 type="text"
                 placeholder="Buscar"
                 className="bg-transparent outline-none text-white text-2xl placeholder-gray-400"
               />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 ml-1 text-white"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
+              <FaSearch size={15} />
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 text-white"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="16" x2="12" y2="12" />
-              <line x1="12" y1="8" x2="12" y2="8" />
-            </svg>
+
+            {/* Ícono de información */}
+            <FaInfoCircle className="text-white" />
           </div>
 
-          {/* Botón de menú móvil */}
+          {/* Menú hamburguesa en móvil */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileNavOpen(!mobileNavOpen)}
               className="focus:outline-none"
             >
-              {mobileNavOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              )}
+              {mobileNavOpen ? <RxCross1 /> : <RxHamburgerMenu />}
             </button>
           </div>
         </div>
@@ -191,6 +122,27 @@ const Header = () => {
               </li>
             </ul>
           </nav>
+          <div className="flex items-center space-x-4 justify-center p-4 border-t border-gray-700">
+            {/* Botones de filtro */}
+            <button
+              className={`filter-option ${filter === "all" ? "text-white" : "text-gray-400"}`}
+              onClick={() => handleFilterChange("all")}
+            >
+              <FaStarOfLife />
+            </button>
+            <button
+              className={`filter-option ${filter === "disc" ? "text-white" : "text-gray-400"}`}
+              onClick={() => handleFilterChange("disc")}
+            >
+              <FaRecordVinyl size={20} />
+            </button>
+            <button
+              className={`filter-option ${filter === "spotify" ? "text-white" : "text-gray-400"}`}
+              onClick={() => handleFilterChange("spotify")}
+            >
+              <FaSpotify size={20} />
+            </button>
+          </div>
           <div className="flex items-center justify-center p-4 border-t border-gray-700">
             <div className="flex items-center border border-gray-600 rounded px-2">
               <input
@@ -198,34 +150,9 @@ const Header = () => {
                 placeholder="Buscar"
                 className="bg-transparent outline-none text-white text-2xl placeholder-gray-400"
               />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 ml-1 text-white"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
+              <FaSearch size={15} />
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 ml-4 text-white"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="16" x2="12" y2="12" />
-              <line x1="12" y1="8" x2="12" y2="8" />
-            </svg>
+            <FaInfoCircle className="text-white ml-4" />
           </div>
         </div>
       )}

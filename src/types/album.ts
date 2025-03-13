@@ -18,3 +18,19 @@ export interface Album {
     album: Album;
   }
   
+/*
+  interface Pagination {
+    page: number;
+    per_page: number;
+    total: number;
+    total_pages: number;
+  }
+
+  */
+  
+  /*
+  interface ApiResponse {
+    data: Album[];
+    pagination: Pagination;
+  }
+    */

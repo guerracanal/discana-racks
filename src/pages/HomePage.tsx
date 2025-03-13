@@ -2,13 +2,10 @@ import Header from "../components/Header";
 import LazyRack from "../components/LazyRack";
 import { Rack } from "../types/rack";
 import { HomePageProps } from "../types/home";
-
-
 import { FC } from "react";
 
-
-
 const HomePage: FC<HomePageProps> = ({ useFetchAlbumsHook, useFetchRacksHook }) => {
+
   const OPTIONS = {
     align: "start",
     dragFree: true,

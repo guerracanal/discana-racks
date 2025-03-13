@@ -4,6 +4,7 @@ interface RackCarouselProps {
   title: string;
   endpoint: string;
   options: any;
+  icono: string;
   fetchAlbumsHook: (endpoint: string) => { albums: any[]; loading: boolean; error: any };
 }
 
@@ -11,7 +12,8 @@ const RackCarousel = ({
   title,
   endpoint,
   options,
-  fetchAlbumsHook, // Puede ser useFetchAlbums o useFetchAlbumsPendientes
+  icono,
+  fetchAlbumsHook,
 }: RackCarouselProps) => {
   const { albums, loading, error } = fetchAlbumsHook(endpoint);
 
@@ -26,6 +28,7 @@ const RackCarousel = ({
       albums={albums}
       options={options}
       endpoint={endpoint}
+      icono={icono}
     />
   );
 };

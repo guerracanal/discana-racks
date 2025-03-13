@@ -1,0 +1,128 @@
+[
+  {
+    "title": "Planta",
+    "endpoint": "type/Planta",
+    "description": "Álbumes de Folk, Americana, y música tradicional, con toques de Neofolk y Chamber Pop.",
+    "order": 1,
+    "icono": "https://archives.bulbagarden.net/media/upload/6/61/GO_Grass.png"
+  },
+  {
+    "title": "Fuego",
+    "endpoint": "type/Fuego",
+    "description": "Álbumes de Hip Hop experimental, Trap y Jazz Rap, con un enfoque político y social.",
+    "order": 2,
+    "icono": "https://archives.bulbagarden.net/media/upload/0/0e/GO_Fire.png"
+  },
+  {
+    "title": "Agua",
+    "endpoint": "type/Agua",
+    "description": "Álbumes de House, Chillout y Dance, perfectos para ambientes relajados y de baile.",
+    "order": 3,
+    "icono": "https://archives.bulbagarden.net/media/upload/a/aa/GO_Water.png"
+  },
+  {
+    "title": "Normal",
+    "endpoint": "type/Normal",
+    "description": "Álbumes de Pop, Soft Rock y Soundtrack, ideales para un escucha relajada y nostálgica.",
+    "order": 4,
+    "icono": "https://archives.bulbagarden.net/media/upload/2/22/GO_Normal.png"
+  },
+  {
+    "title": "Volador",
+    "endpoint": "type/Volador",
+    "description": "Álbumes de R&B, Soul, Funk, y Blues, combinados con Jazz vocal y rock alternativo.",
+    "order": 5,
+    "icono": "https://archives.bulbagarden.net/media/upload/8/87/GO_Flying.png"
+  },
+  {
+    "title": "Bicho",
+    "endpoint": "type/Bicho",
+    "description": "Álbumes de EDM, Glitch Hop y Minimal Techno, con sonidos experimentales y digitales.",
+    "order": 6,
+    "icono": "https://archives.bulbagarden.net/media/upload/9/94/GO_Bug.png"
+  },
+  {
+    "title": "Roca",
+    "endpoint": "type/Roca",
+    "description": "Álbumes de Hard Rock, Metal progresivo y Garage Rock, con energía cruda y riffs contundentes.",
+    "order": 7,
+    "icono": "https://archives.bulbagarden.net/media/upload/1/11/GO_Rock.png"
+  },
+  {
+    "title": "Tierra",
+    "endpoint": "type/Tierra",
+    "description": "Álbumes de música regional, folclórica y música de diferentes culturas del mundo.",
+    "order": 8,
+    "icono": "https://archives.bulbagarden.net/media/upload/2/21/GO_Ground.png"
+  },
+  {
+    "title": "Veneno",
+    "endpoint": "type/Veneno",
+    "description": "Álbumes de Dubstep, Drum and Bass y Grime, llenos de energía oscura y futurista.",
+    "order": 9,
+    "icono": "https://archives.bulbagarden.net/media/upload/f/ff/GO_Poison.png"
+  },
+  {
+    "title": "Eléctrico",
+    "endpoint": "type/Eléctrico",
+    "description": "Álbumes de Jazz, Fusion y Electro Jazz, con una mezcla de improvisación y beats modernos.",
+    "order": 10,
+    "icono": "https://archives.bulbagarden.net/media/upload/4/4a/GO_Electric.png"
+  },
+  {
+    "title": "Lucha",
+    "endpoint": "type/Lucha",
+    "description": "Álbumes de Punk Rock, Hardcore y Ska, llenos de actitud combativa y rebelde.",
+    "order": 11,
+    "icono": "https://archives.bulbagarden.net/media/upload/1/1e/GO_Fighting.png"
+  },
+  {
+    "title": "Psíquico",
+    "endpoint": "type/Psíquico",
+    "description": "Álbumes de Psicodelia, Ambient y New Age, con sonidos etéreos y envolventes.",
+    "order": 12,
+    "icono": "https://archives.bulbagarden.net/media/upload/f/f2/GO_Psychic.png"
+  },
+  {
+    "title": "Fantasma",
+    "endpoint": "type/Fantasma",
+    "description": "Álbumes de Indie Rock, Shoegaze y Post-Rock, con atmosferas melancólicas y misteriosas.",
+    "order": 13,
+    "icono": "https://archives.bulbagarden.net/media/upload/a/a1/GO_Ghost.png"
+  },
+  {
+    "title": "Hielo",
+    "endpoint": "type/Hielo",
+    "description": "Álbumes de Synthpop, New Wave y Dream Pop, con sonoridades frías y etéreas.",
+    "order": 14,
+    "icono": "https://archives.bulbagarden.net/media/upload/c/c6/GO_Ice.png"
+  },
+  {
+    "title": "Dragón",
+    "endpoint": "type/Dragón",
+    "description": "Álbumes de música clásica, con influencias del romanticismo y la ópera.",
+    "order": 15,
+    "icono": "https://archives.bulbagarden.net/media/upload/9/90/GO_Dragon.png"
+  },
+  {
+    "title": "Acero",
+    "endpoint": "type/Acero",
+    "description": "Álbumes de Thrash Metal, Doom Metal y Death Metal, con guitarras pesadas y riffs imponentes.",
+    "order": 16,
+    "icono": "https://archives.bulbagarden.net/media/upload/d/d2/GO_Steel.png"
+  },
+  {
+    "title": "Oscuro",
+    "endpoint": "type/Oscuro",
+    "description": "Álbumes de Post-Punk, Darkwave y Noise Rock, con atmósferas oscuras y experimentales.",
+    "order": 17,
+    "icono": "https://archives.bulbagarden.net/media/upload/7/73/GO_Dark.png"
+  },
+  {
+    "title": "Hada",
+    "endpoint": "type/Hada",
+    "description": "Álbumes de Electropop, J-Pop y Disco, llenos de energía positiva y sonidos brillantes.",
+    "order": 18,
+    "icono": "https://archives.bulbagarden.net/media/upload/a/ae/GO_Fairy.png"
+  }
+]

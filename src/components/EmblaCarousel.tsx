@@ -9,16 +9,18 @@ import {
   NextButton,
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
+import { FaAngleDoubleRight } from 'react-icons/fa';
 
 type PropType = {
   options?: EmblaOptionsType
   title: string
   albums: Album[]
   endpoint: string
+  icono: string
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options, albums, title, endpoint } = props
+  const { options, albums, title, endpoint, icono } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const [scrollProgress, setScrollProgress] = useState(0)
 
@@ -53,25 +55,23 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   return (
     <section className="embla">
       <div className="embla__header flex items-center justify-between">
-        <h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
-          {title}
-          <span className="more text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2">
-            <a href={endpoint} className="flex items-center space-x-1">
-              <span>ver más</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 transition-colors duration-200"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </a>
-          </span>
-        </h2>
+      <h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
+  {icono && (
+    <img
+      src={icono}
+      alt={title}
+      className="w-6 h-6 mr-2"
+    />
+  )}
+  {title}
+  <span className="more text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2">
+    <a href={endpoint} className="flex items-center space-x-1">
+    <FaAngleDoubleRight />
+
+    </a>
+  </span>
+</h2>
+
 
         <div className="embla__progress">
           <div

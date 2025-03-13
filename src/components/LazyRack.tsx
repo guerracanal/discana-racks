@@ -5,6 +5,7 @@ interface LazyRackProps {
   rack: {
     title: string;
     endpoint: string;
+    icono: string;
   };
   options: any;
   fetchAlbumsHook: (endpoint: string) => { albums: any[]; loading: boolean; error: any };
@@ -24,6 +25,7 @@ const LazyRack: React.FC<LazyRackProps> = ({ rack, options, fetchAlbumsHook }) =
           title={rack.title}
           endpoint={rack.endpoint}
           options={options}
+          icono={rack.icono}
           fetchAlbumsHook={fetchAlbums}
         />
       )}

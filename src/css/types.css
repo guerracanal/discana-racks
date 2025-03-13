@@ -1,0 +1,97 @@
+/* Estilos para los íconos de los tipos de Pokémon */
+.type-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  /* Íconos específicos para cada tipo */
+  .type-normal {
+    background-image: url('https://archives.bulbagarden.net/media/upload/7/7b/Normal-type_icon.png');
+  }
+  
+  .type-fire {
+    background-image: url('https://archives.bulbagarden.net/media/upload/4/4f/Fire-type_icon.png');
+  }
+  
+  .type-water {
+    background-image: url('https://archives.bulbagarden.net/media/upload/1/1b/Water-type_icon.png');
+  }
+  
+  .type-electric {
+    background-image: url('https://archives.bulbagarden.net/media/upload/7/7f/Electric-type_icon.png');
+  }
+  
+  .type-grass {
+    background-image: url('https://archives.bulbagarden.net/media/upload/6/6f/Grass-type_icon.png');
+  }
+  
+  .type-ice {
+    background-image: url('https://archives.bulbagarden.net/media/upload/9/9f/Ice-type_icon.png');
+  }
+  
+  .type-fighting {
+    background-image: url('https://archives.bulbagarden.net/media/upload/1/1f/Fighting-type_icon.png');
+  }
+  
+  .type-poison {
+    background-image: url('https://archives.bulbagarden.net/media/upload/4/4e/Poison-type_icon.png');
+  }
+  
+  .type-ground {
+    background-image: url('https://archives.bulbagarden.net/media/upload/5/5f/Ground-type_icon.png');
+  }
+  
+  .type-flying {
+    background-image: url('https://archives.bulbagarden.net/media/upload/2/2f/Flying-type_icon.png');
+  }
+  
+  .type-psychic {
+    background-image: url('https://archives.bulbagarden.net/media/upload/7/7c/Psychic-type_icon.png');
+  }
+  
+  .type-bug {
+    background-image: url('https://archives.bulbagarden.net/media/upload/8/8c/Bug-type_icon.png');
+  }
+  
+  .type-rock {
+    background-image: url('https://archives.bulbagarden.net/media/upload/6/6d/Rock-type_icon.png');
+  }
+  
+  .type-ghost {
+    background-image: url('https://archives.bulbagarden.net/media/upload/5/5f/Ghost-type_icon.png');
+  }
+  
+  .type-dragon {
+    background-image: url('https://archives.bulbagarden.net/media/upload/4/4d/Dragon-type_icon.png');
+  }
+  
+  .type-dark {
+    background-image: url('https://archives.bulbagarden.net/media/upload/2/2e/Dark-type_icon.png');
+  }
+  
+  .type-steel {
+    background-image: url('https://archives.bulbagarden.net/media/upload/0/0f/Steel-type_icon.png');
+  }
+  
+  .type-fairy {
+    background-image: url('https://archives.bulbagarden.net/media/upload/9/9e/Fairy-type_icon.png');
+  }
+  
+  .someComponent {
+    color: black;
+    &>svg {
+      path {
+        fill: black;
+        stroke: black;
+      };
+      rect {
+        fill: black;
+        stroke: black;
+      };
+    }
+  }

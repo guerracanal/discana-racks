@@ -1,19 +1,6 @@
-[
-  {
-    "title": "Novedades",
-    "endpoint": "releases/366",
-    "description": "Últimos lanzamientos musicales.",
-    "order": 1
-  },
-  {
-    "title": "Cumplen años",
-    "endpoint": "anniversary/2",
-    "description": "Cumplen años",
-    "order": 2
-  },
-  {
+{
     "title": "Shoegaze",
-    "endpoint": "genres/shoegaze",
+    "endpoint": "all-genres/shoegaze",
     "description": "Música con capas de sonido y guitarras etéreas.",
     "order": 10
   },
@@ -25,56 +12,56 @@
   },
   {
     "title": "Rock Alternativo",
-    "endpoint": "genres/Rock Alternativo",
+    "endpoint": "genre/Rock Alternativo",
     "description": "Explora el rock fuera de lo convencional.",
     "order": 12
   },
   {
     "title": "Punk",
-    "endpoint": "genres/Punk Rock",
+    "endpoint": "any-genres/Punk Rock",
     "description": "La energía cruda del punk en su máxima expresión.",
     "order": 13
   },
   {
     "title": "Grunge",
-    "endpoint": "genres/Grunge",
+    "endpoint": "any-genres/Grunge",
     "description": "El sonido rebelde de los 90.",
     "order": 14
   },
 
   {
     "title": "Funk",
-    "endpoint": "genres/funk",
+    "endpoint": "all-genres/funk",
     "description": "Ritmos llenos de groove y energía.",
     "order": 15
   },
   {
     "title": "Folk",
-    "endpoint": "genres/folk",
+    "endpoint": "genre/folk",
     "description": "Melodías acústicas con raíces tradicionales.",
     "order": 16
   },
   {
     "title": "Jazz",
-    "endpoint": "genres/jazz",
+    "endpoint": "all-genres/jazz",
     "description": "Improvisación y elegancia en su máxima expresión.",
     "order": 17
   },
   {
     "title": "Progresivo",
-    "endpoint": "genres/Rock%20Progresivo/Progressive%20Rock/Progressive%20Pop/Folk%20Progresivo/Progressive/Metal%20Progresivo/Experimental%20Rock/Progressive%20Electronic",
+    "endpoint": "any-genres/Rock%20Progresivo/Progressive%20Rock/Progressive%20Pop/Folk%20Progresivo/Progressive/Metal%20Progresivo/Experimental%20Rock/Progressive%20Electronic",
     "description": "progresivo",
     "order": 18
   },
   {
     "title": "Experimental",
-    "endpoint": "genres/Experimental/Rock Experimental/Art Rock/Experimental Rock/Art Pop/Experimental Pop/Hip Hop Experimental/Math Rock",
+    "endpoint": "any-genres/Experimental/Rock Experimental/Art Rock/Experimental Rock/Art Pop/Experimental Pop/Hip Hop Experimental/Math Rock",
     "order": 19
   },
 
   {
     "title": "Japón",
-    "endpoint": "genres/J-Pop/J-Rock/J-Metal/Yakousei/shimokita-kei",
+    "endpoint": "any-genres/J-Pop/J-Rock/J-Metal/Yakousei/shimokita-kei",
     "description": "Descubre el rock y pop japonés.",
     "order": 20
   },
@@ -102,36 +89,10 @@
     "description": "SQUARE ENIX",
     "order": 24
   },
-  {
-    "title": "RHCP",
-    "endpoint": "artist/Red Hot Chili Peppers",
-    "description": "Red Hot Chili Peppers.",
-    "order": 30
-  },
-  {
-    "title": "Weezer",
-    "endpoint": "artist/Weezer",
-    "description": "Weezer",
-    "order": 31
-  },
-  {
-    "title": "Extremoduro",
-    "endpoint": "artist/extremoduro",
-    "description": "Extremoduro",
-    "order": 32
-  },
-  {
-    "title": "Queen",
-    "endpoint": "artist/queen",
-    "description": "Queen",
-    "order": 36
-  },
-  {
-    "title": "Beatles",
-    "endpoint": "artist/beatles",
-    "description": "Los beatles",
-    "order": 37
-  },
+
+
+
+
 
   {
     "title": "Cumplen 20 años",
@@ -195,13 +156,13 @@
   },
   {
     "title": "Time to relax",
-    "endpoint": "moods/relajado",
+    "endpoint": "mood/relajado",
     "description": "Mood relajado",
     "order": 60
   },
   {
     "title": "Energia para el día",
-    "endpoint": "moods/energético",
+    "endpoint": "mood/energético",
     "description": "Mood energetico",
     "order": 61
   },
@@ -217,4 +178,3 @@
     "description": "Álbumes disponibles en formato vinilo.",
     "order": 101
   }
-]

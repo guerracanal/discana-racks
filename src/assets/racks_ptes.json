@@ -12,83 +12,41 @@
     "order": 2
   },
   {
-    "title": "Shoegaze",
-    "endpoint": "all-genres/shoegaze",
+    "title": "Rock",
+    "endpoint": "compilations/rock",
     "description": "Música con capas de sonido y guitarras etéreas.",
     "order": 10
   },
   {
     "title": "Metal",
-    "endpoint": "compilations/Acero",
+    "endpoint": "compilations/metal",
     "description": "Selección de los mejores discos de metal.",
     "order": 11
   },
   {
-    "title": "Rock Alternativo",
-    "endpoint": "genre/Rock Alternativo",
+    "title": "Otros",
+    "endpoint": "compilations/otros",
     "description": "Explora el rock fuera de lo convencional.",
     "order": 12
   },
   {
     "title": "Punk",
-    "endpoint": "any-genres/Punk Rock",
+    "endpoint": "compilations/punk",
     "description": "La energía cruda del punk en su máxima expresión.",
     "order": 13
   },
   {
-    "title": "Grunge",
-    "endpoint": "any-genres/Grunge",
-    "description": "El sonido rebelde de los 90.",
+    "title": "español",
+    "endpoint": "compilations/español",
+    "description": "En español",
     "order": 14
   },
 
   {
-    "title": "Funk",
-    "endpoint": "all-genres/funk",
-    "description": "Ritmos llenos de groove y energía.",
+    "title": "BSO",
+    "endpoint": "compilations/bso",
+    "description": "BSO",
     "order": 15
-  },
-  {
-    "title": "Folk",
-    "endpoint": "genre/folk",
-    "description": "Melodías acústicas con raíces tradicionales.",
-    "order": 16
-  },
-  {
-    "title": "Jazz",
-    "endpoint": "all-genres/jazz",
-    "description": "Improvisación y elegancia en su máxima expresión.",
-    "order": 17
-  },
-  {
-    "title": "Progresivo",
-    "endpoint": "any-genres/Rock%20Progresivo/Progressive%20Rock/Progressive%20Pop/Folk%20Progresivo/Progressive/Metal%20Progresivo/Experimental%20Rock/Progressive%20Electronic",
-    "description": "progresivo",
-    "order": 18
-  },
-  {
-    "title": "Experimental",
-    "endpoint": "any-genres/Experimental/Rock Experimental/Art Rock/Experimental Rock/Art Pop/Experimental Pop/Hip Hop Experimental/Math Rock",
-    "order": 19
-  },
-
-  {
-    "title": "Japón",
-    "endpoint": "any-genres/J-Pop/J-Rock/J-Metal/Yakousei/shimokita-kei",
-    "description": "Descubre el rock y pop japonés.",
-    "order": 20
-  },
-  {
-    "title": "Rock Español",
-    "endpoint": "compilations/ROCK-ES",
-    "description": "El mejor rock en español.",
-    "order": 21
-  },
-  {
-    "title": "Épico",
-    "endpoint": "compilations/dragón",
-    "description": "Canciones con un sonido poderoso y legendario.",
-    "order": 22
   },
   {
     "title": "Corta duración",
