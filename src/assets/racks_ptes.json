@@ -6,12 +6,6 @@
     "order": 1
   },
   {
-    "title": "Cumplen años",
-    "endpoint": "anniversary/2",
-    "description": "Cumplen años",
-    "order": 2
-  },
-  {
     "title": "Rock",
     "endpoint": "compilations/rock",
     "description": "Música con capas de sonido y guitarras etéreas.",

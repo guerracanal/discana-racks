@@ -12,8 +12,8 @@
     "order": 2
   },
   {
-    "title": "Shoegaze",
-    "endpoint": "genres/shoegaze",
+    "title": "Shoegaze & Dream Pop",
+    "endpoint": "genres/Shoegaze/Dream Pop",
     "description": "Música con capas de sonido y guitarras etéreas.",
     "order": 10
   },
@@ -44,19 +44,19 @@
 
   {
     "title": "Funk",
-    "endpoint": "genres/funk",
+    "endpoint": "genres/Funk",
     "description": "Ritmos llenos de groove y energía.",
     "order": 15
   },
   {
     "title": "Folk",
-    "endpoint": "genres/folk",
+    "endpoint": "genres/Folk",
     "description": "Melodías acústicas con raíces tradicionales.",
     "order": 16
   },
   {
     "title": "Jazz",
-    "endpoint": "genres/jazz",
+    "endpoint": "genres/Jazz",
     "description": "Improvisación y elegancia en su máxima expresión.",
     "order": 17
   },
@@ -86,15 +86,9 @@
   },
   {
     "title": "Épico",
-    "endpoint": "compilations/dragón",
+    "endpoint": "compilations/Dragón",
     "description": "Canciones con un sonido poderoso y legendario.",
     "order": 22
-  },
-  {
-    "title": "Corta duración",
-    "endpoint": "duration/20",
-    "description": "Discos cortos",
-    "order": 23
   },
   {
     "title": "SQUARE ENIX",
@@ -195,26 +189,14 @@
   },
   {
     "title": "Time to relax",
-    "endpoint": "moods/relajado",
+    "endpoint": "moods/Relajado",
     "description": "Mood relajado",
     "order": 60
   },
   {
     "title": "Energia para el día",
-    "endpoint": "moods/energético",
+    "endpoint": "moods/Energético",
     "description": "Mood energetico",
     "order": 61
-  },
-  {
-    "title": "En CD",
-    "endpoint": "format/cd",
-    "description": "Discos disponibles en formato CD.",
-    "order": 100
-  },
-  {
-    "title": "En vinilo",
-    "endpoint": "format/vinilo",
-    "description": "Álbumes disponibles en formato vinilo.",
-    "order": 101
   }
 ]

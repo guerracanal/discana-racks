@@ -106,18 +106,13 @@ const Header = () => {
                 </a>
               </li>
               <li>
-                <a href="/todo" className="hover:text-gray-300">
+                <a href="/types" className="hover:text-gray-300">
                   Todo
                 </a>
               </li>
               <li>
                 <a href="/pendientes" className="hover:text-gray-300">
                   Pendientes
-                </a>
-              </li>
-              <li>
-                <a href="/explorar" className="hover:text-gray-300">
-                  Explorar
                 </a>
               </li>
             </ul>
