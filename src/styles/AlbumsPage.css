@@ -1,0 +1,54 @@
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  max-width: 90%;
+  margin: 8rem auto;
+}
+
+.albums-grid__item {
+  height: 35rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative; /* Ensure absolute elements are positioned correctly */
+}
+
+.albums-grid__item:hover {
+  transform: translateY(-5px);
+}
+
+.albums-grid__item .album-card {
+  width: 100%;
+  height: 100%;
+  position: relative; /* Ensure absolute elements are positioned correctly */
+}
+
+.albums-grid__item .album-card .cover {
+  width: 100%;
+  height: auto;
+  max-width: 130px; /* Adjust the size of the cover */
+  max-height: 130px; /* Adjust the size of the cover */
+  margin: 0 auto;
+}
+
+.albums-grid__item .album-card .top,
+.albums-grid__item .album-card .bottom {
+  position: absolute; /* Ensure floating elements are positioned correctly */
+  width: 100%; /* Ensure elements take full width */
+  left: 0; /* Align elements to the left */
+  transform: none;
+  margin-top: 8px;
+  z-index: 1; /* Ensure elements are above other content */
+}
+
+.albums-grid__item .album-card .top {
+  top: 0; /* Align top element to the top */
+}
+
+.albums-grid__item .album-card .bottom {
+  bottom: 0; /* Align bottom element to the bottom */
+}

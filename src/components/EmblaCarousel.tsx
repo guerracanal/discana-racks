@@ -55,22 +55,22 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   return (
     <section className="embla">
       <div className="embla__header flex items-center justify-between">
-      <h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
-  {icono && (
-    <img
-      src={icono}
-      alt={title}
-      className="w-6 h-6 mr-2"
-    />
-  )}
-  {title}
-  <span className="more text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2">
-    <a href={endpoint} className="flex items-center space-x-1">
-    <FaAngleDoubleRight />
-
-    </a>
-  </span>
-</h2>
+        <a href={endpoint}><h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
+          {icono && (
+            <img
+              src={icono}
+              alt={title}
+              className="w-6 h-6 mr-2"
+            />
+          )}
+          {title}
+          <span className="more text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2">
+            <span className="flex items-center space-x-1">
+              <FaAngleDoubleRight />
+            </span>
+          </span>
+        </h2>
+        </a>
 
 
         <div className="embla__progress">
@@ -85,7 +85,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           {albums.map((album) => (
             <div className="embla__slide" key={title + album.artist + album.title}>
               <div className="embla__slide__card">
-                <AlbumCard album={album} />
+                <AlbumCard album={album} filter={'all'} />
               </div>
             </div>
           ))}

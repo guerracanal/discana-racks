@@ -51,36 +51,36 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4">
             {/* Botones de filtro */}
             <button
-              className={`filter-option ${filter === "all" ? "text-white" : "text-gray-400"}`}
+              className={`cursor-pointer filter-option ${filter === "all" ? "text-white" : "text-gray-400"}`}
               onClick={() => handleFilterChange("all")}
             >
               <FaStarOfLife />
             </button>
             <button
-              className={`filter-option ${filter === "disc" ? "text-white" : "text-gray-400"}`}
+              className={`cursor-pointer filter-option ${filter === "disc" ? "text-white" : "text-gray-400"}`}
               onClick={() => handleFilterChange("disc")}
             >
               <FaRecordVinyl size={20} />
             </button>
             <button
-              className={`filter-option ${filter === "spotify" ? "text-white" : "text-gray-400"}`}
+              className={`cursor-pointer filter-option ${filter === "spotify" ? "text-white" : "text-gray-400"}`}
               onClick={() => handleFilterChange("spotify")}
             >
               <FaSpotify size={20} />
             </button>
 
             {/* Búsqueda */}
-            <div className="flex items-center border border-gray-600 rounded px-2">
+            <div className="cursor-not-allowed flex items-center border border-gray-600 rounded px-2">
               <input
                 type="text"
                 placeholder="Buscar"
-                className="bg-transparent outline-none text-white text-2xl placeholder-gray-400"
+                className="cursor-not-allowed bg-transparent outline-none text-white text-2xl placeholder-gray-400"
               />
-              <FaSearch size={15} />
+              <FaSearch size={15}/>
             </div>
 
             {/* Ícono de información */}
-            <FaInfoCircle className="text-white" />
+            <a className="cursor-not-allowed" href=""><FaInfoCircle className="text-white" /></a>
           </div>
 
           {/* Menú hamburguesa en móvil */}

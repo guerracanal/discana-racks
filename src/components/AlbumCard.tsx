@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import cdIcon from "../assets/icons/cd.png";
 import vinylIcon from "../assets/icons/vinyl.png";
 import Marquee from "react-fast-marquee";
-import {AlbumCardProps } from '../types/album';
-
+import { AlbumCardProps } from '../types/album';
 
 const getFlagEmoji = (countryCode: string) => {
   // Soporte especial para Escocia
@@ -16,7 +15,7 @@ const getFlagEmoji = (countryCode: string) => {
     .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
 };
 
-export default function AlbumCard({ album }: AlbumCardProps) {
+const AlbumCard = React.forwardRef<HTMLDivElement, AlbumCardProps>(({ album }, ref) => {
 
   // Ajusta estos valores según tu preferencia
   const MAX_TITLE_LENGTH = 18;
@@ -49,7 +48,7 @@ export default function AlbumCard({ album }: AlbumCardProps) {
 
   return (
     <a className="link" href={album.spotify_link}>
-      <div className="card text-sm w-full h-full place-content-center">
+      <div ref={ref} className="card text-sm w-full h-full place-content-center">
         <div className="top absolute top-3">
           <div className="mood w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto flex items-center justify-between">
             {isMoodLong ? (
@@ -124,4 +123,6 @@ export default function AlbumCard({ album }: AlbumCardProps) {
       </div>
     </a>
   );
-}
+});
+
+export default AlbumCard;

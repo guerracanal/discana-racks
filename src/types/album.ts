@@ -1,5 +1,5 @@
 export interface Album {
-    id: string;
+    _id: string;
     title: string;
     image: string;
     artist: string;
@@ -16,6 +16,9 @@ export interface Album {
   
   export interface AlbumCardProps {
     album: Album;
+    className?: string;
+    filter: "all" | "disc" | "spotify";
+
   }
   
 /*
