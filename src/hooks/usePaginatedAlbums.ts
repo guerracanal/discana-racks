@@ -26,6 +26,15 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
       loadingRef.current = true;
       setLoading(true);
 
+      const cacheKey = `${albums_collection}-${endpoint}-${page}-${filter}-${random}`;
+      const cachedData = sessionStorage.getItem(cacheKey);
+      if (cachedData) {
+        setAlbums((prevAlbums) => [...prevAlbums, ...JSON.parse(cachedData)]);
+        setLoading(false);
+        loadingRef.current = false;
+        return;
+      }
+
       try {
         const url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?page=${page}&limit=20&filter=${filter}&random=${random}`;
         console.log(url);
@@ -33,10 +42,9 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
         if (!response.ok) throw new Error("Error fetching albums");
         const data = await response.json();
 
-        setAlbums((prevAlbums) => {
-          const newAlbums = data.data.filter((album: Album) => !prevAlbums.some((a) => a._id === album._id));
-          return [...prevAlbums, ...newAlbums];
-        });
+        const newAlbums = data.data.filter((album: Album) => !albums.some((a) => a._id === album._id));
+        sessionStorage.setItem(cacheKey, JSON.stringify(newAlbums));
+        setAlbums((prevAlbums) => [...prevAlbums, ...newAlbums]);
         setHasMore(data.pagination.page < data.pagination.total_pages);
       } catch (err) {
         setError((err as Error).message);
