@@ -46,6 +46,7 @@ const App: React.FC = () => {
           }
         />
         <Route path="/ap/:albums_collection/*" element={<AlbumsPage />} />
+        <Route path="/ap/albums" element={<AlbumsPage />} />
       </Routes>
     </Router>
   );

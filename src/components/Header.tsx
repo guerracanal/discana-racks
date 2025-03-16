@@ -2,15 +2,26 @@ import { useState } from 'react';
 import { FaInfoCircle, FaRecordVinyl, FaSearch, FaSpotify, FaStarOfLife } from "react-icons/fa";
 import logo from "../assets/logo.svg";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const filter = searchParams.get('filter') || 'all';
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   const handleFilterChange = (option: "all" | "disc" | "spotify") => {
     setSearchParams({ filter: option });
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(`/ap/albums?search=${searchQuery}`);
   };
 
   return (
@@ -72,14 +83,18 @@ const Header = () => {
             </button>
 
             {/* Búsqueda */}
-            <div className="cursor-not-allowed flex items-center border border-gray-600 rounded px-2">
+            <form onSubmit={handleSearchSubmit} className="flex items-center border border-gray-600 rounded px-2">
               <input
                 type="text"
                 placeholder="Buscar"
-                className="cursor-not-allowed bg-transparent outline-none text-white text-2xl placeholder-gray-400"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="bg-transparent outline-none text-white text-2xl placeholder-gray-400"
               />
-              <FaSearch size={15}/>
-            </div>
+              <button type="submit">
+                <FaSearch size={15}/>
+              </button>
+            </form>
 
             {/* Ícono de información */}
             <a className="cursor-not-allowed" href=""><FaInfoCircle className="text-white" /></a>
@@ -145,9 +160,13 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Buscar"
+                value={searchQuery}
+                onChange={handleSearchChange}
                 className="bg-transparent outline-none text-white text-2xl placeholder-gray-400"
               />
-              <FaSearch size={15} />
+              <button type="submit">
+                <FaSearch size={15} />
+              </button>
             </div>
             <FaInfoCircle className="text-white ml-4" />
           </div>

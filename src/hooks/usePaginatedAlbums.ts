@@ -13,12 +13,13 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
   const [searchParams] = useSearchParams();
   const filter = searchParams.get('filter') || 'all';
   const random = searchParams.get('random') || 'false';
+  const searchQuery = searchParams.get('search') || '';
 
   useEffect(() => {
     setAlbums([]);
     setPage(1);
     setHasMore(true);
-  }, [albums_collection, endpoint, filter]); // Add albums_collection as a dependency
+  }, [albums_collection, endpoint, filter, searchQuery]); // Add searchQuery as a dependency
 
   useEffect(() => {
     const fetchAlbums = async () => {
@@ -26,7 +27,7 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
       loadingRef.current = true;
       setLoading(true);
 
-      const cacheKey = `${albums_collection}-${endpoint}-${page}-${filter}-${random}`;
+      const cacheKey = `${albums_collection}-${endpoint}-${page}-${filter}-${random}-${searchQuery}`;
       const cachedData = sessionStorage.getItem(cacheKey);
       if (cachedData) {
         setAlbums((prevAlbums) => [...prevAlbums, ...JSON.parse(cachedData)]);
@@ -36,7 +37,10 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
       }
 
       try {
-        const url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?page=${page}&limit=20&filter=${filter}&random=${random}`;
+        let url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?page=${page}&limit=20&filter=${filter}&random=${random}`;
+        if (searchQuery) {
+          url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/title/${searchQuery}?page=${page}&limit=20&filter=${filter}&random=${random}`;
+        }
         console.log(url);
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error fetching albums");
@@ -55,7 +59,7 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
     };
 
     fetchAlbums();
-  }, [albums_collection, endpoint, page, filter, random]); // Add random as a dependency
+  }, [albums_collection, endpoint, page, filter, random, searchQuery]); // Add searchQuery as a dependency
 
   const loadMore = () => {
     if (hasMore && !loadingRef.current) {

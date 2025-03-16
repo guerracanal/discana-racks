@@ -14,6 +14,7 @@ const AlbumsPage: React.FC<AlbumsPageProps> = () => {
   const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(albums_collection, path);
   const [searchParams] = useSearchParams();
   const filter = (searchParams.get('filter') as "all" | "disc" | "spotify") || 'all';
+  const searchQuery = searchParams.get('search') || '';
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -39,7 +40,7 @@ const AlbumsPage: React.FC<AlbumsPageProps> = () => {
 
   useEffect(() => {
     loadMore();
-  }, [path, loadMore, filter]);
+  }, [path, loadMore, filter, searchQuery]);
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastAlbumElementRef = useCallback(
@@ -64,7 +65,7 @@ const AlbumsPage: React.FC<AlbumsPageProps> = () => {
           <button onClick={handleBackClick} className="text-white ml-4">
             <FaArrowLeft size={20} />
           </button>
-          <h1 className="text-2xl font-bold text-white mx-auto">{title}</h1>
+          <h1 className="text-2xl font-bold text-white mx-auto">{title || 'Resultados de la búsqueda: '+ searchQuery}</h1>
           {isPopupVisible && (
             <button onClick={handleCloseClick} className="text-white mr-4">
               <FaTimes size={20} />
