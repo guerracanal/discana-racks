@@ -12,28 +12,10 @@ export interface Album {
     spotify_link: string;
     format: string[];
     country: string;
-  }
-  
-  export interface AlbumCardProps {
+}
+
+export interface AlbumCardProps {
     album: Album;
     className?: string;
     filter: "all" | "disc" | "spotify";
-
-  }
-  
-/*
-  interface Pagination {
-    page: number;
-    per_page: number;
-    total: number;
-    total_pages: number;
-  }
-
-  */
-  
-  /*
-  interface ApiResponse {
-    data: Album[];
-    pagination: Pagination;
-  }
-    */
+}

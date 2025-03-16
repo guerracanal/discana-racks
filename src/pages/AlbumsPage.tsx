@@ -1,21 +1,43 @@
-import React, { useRef, useCallback, useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom"; // Import useSearchParams
+import React, { useRef, useCallback, useEffect, useState } from "react";
+import { useParams, useSearchParams, useNavigate, useLocation } from "react-router-dom";
+import { FaArrowLeft, FaTimes } from "react-icons/fa";
 import usePaginatedAlbums from "../hooks/usePaginatedAlbums";
 import AlbumCard from "../components/AlbumCard";
-import "../styles/AlbumsPage.css"; // Import the new CSS file
-import Header from "../components/Header"; // Import the Header component
+import "../styles/AlbumsPage.css";
+import Header from "../components/Header";
 
 const AlbumsPage: React.FC = () => {
   const { category, "*": restPath } = useParams<{ category: string; "*": string }>();
   const path = `${category}/${restPath}`;
   const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(path);
-  const [searchParams] = useSearchParams(); // Get searchParams
-  const filter = (searchParams.get('filter') as "all" | "disc" | "spotify") || 'all'; // Get filter from searchParams
+  const [searchParams] = useSearchParams();
+  const filter = (searchParams.get('filter') as "all" | "disc" | "spotify") || 'all';
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const title = queryParams.get('title');
+  const [isPopupVisible, setIsPopupVisible] = useState(window.innerWidth >= 1024);
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
+  const handleCloseClick = () => {
+    setIsPopupVisible(false);
+    navigate(-1);
+  };
 
   useEffect(() => {
-    // Ensure usePaginatedAlbums is called only once when the component mounts
+    const handleResize = () => {
+      setIsPopupVisible(window.innerWidth >= 1024);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     loadMore();
-  }, [path, loadMore, filter]); // Add filter as a dependency
+  }, [path, loadMore, filter]);
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastAlbumElementRef = useCallback(
@@ -35,23 +57,37 @@ const AlbumsPage: React.FC = () => {
   return (
     <>
       <Header /> {/* Render the Header component */}
-      <section className="albums-grid">
-        {albums.map((album, index) => {
-          if (albums.length === index + 1) {
-            return (
-              <div className="albums-grid__item" key={album._id} ref={lastAlbumElementRef}>
-                <AlbumCard album={album} filter={filter} /> {/* Pass filter to AlbumCard */}
-              </div>
-            );
-          } else {
-            return (
-              <div className="albums-grid__item" key={album._id}>
-                <AlbumCard album={album} filter={filter} /> {/* Pass filter to AlbumCard */}
-              </div>
-            );
-          }
-        })}
-      </section>
+      <div className={`pt-0 ${isPopupVisible ? 'popup-container' : ''}`}>
+        <header className={`fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-lg h-16 flex items-center ${isPopupVisible ? 'popup-header' : ''}`}>
+          <button onClick={handleBackClick} className="text-white ml-4">
+            <FaArrowLeft size={20} />
+          </button>
+          <h1 className="text-2xl font-bold text-white mx-auto">{title}</h1>
+          {isPopupVisible && (
+            <button onClick={handleCloseClick} className="text-white mr-4">
+              <FaTimes size={20} />
+            </button>
+          )}
+        </header>
+
+        <section className="albums-grid pt-16">
+          {albums.map((album, index) => {
+            if (albums.length === index + 1) {
+              return (
+                <div className="albums-grid__item" key={album._id} ref={lastAlbumElementRef}>
+                  <AlbumCard album={album} filter={filter} />
+                </div>
+              );
+            } else {
+              return (
+                <div className="albums-grid__item" key={album._id}>
+                  <AlbumCard album={album} filter={filter} />
+                </div>
+              );
+            }
+          })}
+        </section>
+      </div>
     </>
   );
 };

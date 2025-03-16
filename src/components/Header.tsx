@@ -18,6 +18,7 @@ const Header = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-lg h-16 flex items-center">
         <div className="max-w-10xl mx-auto flex items-center justify-between w-full px-4">
           {/* Logo y Titulo */}
+          <a href="/">
           <div className="flex items-center space-x-3">
             <img src={logo} alt="Logo" className="logo w-14 h-14" />
             <div>
@@ -25,6 +26,7 @@ const Header = () => {
               <p className="text-sm italic text-gray-400">Personal Record Collection</p>
             </div>
           </div>
+          </a>
 
           {/* Menú de navegación - Desktop */}
           <nav className="hidden md:flex flex-grow justify-start space-x-4 m-15">

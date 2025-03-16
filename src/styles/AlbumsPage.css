@@ -8,7 +8,7 @@
 }
 
 .albums-grid__item {
-  height: 35rem;
+  height: 37rem;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -51,4 +51,64 @@
 
 .albums-grid__item .album-card .bottom {
   bottom: 0; /* Align bottom element to the bottom */
+}
+
+.bg-header-background {
+  background-color: #333; /* Replace with the actual header background color */
+}
+
+.bg-header-hover {
+  background-color: #555; /* Replace with the actual header hover color */
+}
+
+.popup-container {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  background-color: gray; /* Replace with the actual popup background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .albums-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .albums-grid__item {
+    height: 25rem;
+  }
+
+  .albums-grid__item .album-card .cover {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .albums-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .albums-grid__item {
+    height: 22rem;
+  }
+
+  .albums-grid__item .album-card .cover {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: block; /* Ensure the cover image is centered */
+  }
 }

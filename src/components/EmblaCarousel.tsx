@@ -10,6 +10,7 @@ import {
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
 import { FaAngleDoubleRight } from 'react-icons/fa';
+import { useSearchParams } from 'react-router-dom';
 
 type PropType = {
   options?: EmblaOptionsType
@@ -22,6 +23,8 @@ type PropType = {
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { options, albums, title, endpoint, icono } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
+  const [searchParams] = useSearchParams();
+  const filter = searchParams.get('filter') || 'all';
   const [scrollProgress, setScrollProgress] = useState(0)
 
   const {
@@ -55,7 +58,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   return (
     <section className="embla">
       <div className="embla__header flex items-center justify-between">
-        <a href={endpoint}><h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
+        <a href={`${endpoint}?title=${encodeURIComponent(title)}&filter=${filter}`}><h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
           {icono && (
             <img
               src={icono}

@@ -126,6 +126,17 @@
     left: -100%;
     transition: transform 0.3s ease;
   }
+  
+  /*
+  .embla__slide__card div.icons {
+    bottom: 2;
+    left: 8; 
+    right: 0;
+    position: absolute; 
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+  }*/
 
   @media (max-width: 700px) {
 

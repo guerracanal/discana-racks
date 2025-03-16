@@ -48,9 +48,9 @@ const AlbumCard = React.forwardRef<HTMLDivElement, AlbumCardProps>(({ album }, r
 
   return (
     <a className="link" href={album.spotify_link}>
-      <div ref={ref} className="card text-sm w-full h-full place-content-center">
-        <div className="top absolute top-3">
-          <div className="mood w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto flex items-center justify-between">
+      <div ref={ref} className="card text-sm w-full h-full place-content-center flex flex-col justify-between">
+        <div className="top">
+          <div className="mood w-5/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto flex items-center justify-between">
             {isMoodLong ? (
               <Marquee speed={30}>
                 <p className="text-center text-base">&emsp;{album.mood.join(', ')}</p>
@@ -62,9 +62,9 @@ const AlbumCard = React.forwardRef<HTMLDivElement, AlbumCardProps>(({ album }, r
             )}
           </div>
         </div>
-        <img className="cover bg-cover bg-center rounded-lg w-full h-full sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src={album.image} loading="lazy" alt={album.title} />
+        <img className="cover bg-cover bg-center rounded-lg sm:w-20 sm:h-20 md:w-30 md:h-30 lg:w-85 lg:h-85 mx-auto" src={album.image} loading="lazy" alt={album.title} />
 
-        <div className="box w-4/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto">
+        <div className="box w-5/6 sm:w-5/6 md:w-5/6 lg:w-5/6 mx-auto">
           {isTitleLong ? (
             <Marquee speed={10}>
               <h3 className="title sm:text-xl md:text-2xl lg:text-3xl font-bold">&emsp;{album.title}</h3>
@@ -103,8 +103,8 @@ const AlbumCard = React.forwardRef<HTMLDivElement, AlbumCardProps>(({ album }, r
         </div>
 
         {/* Contenedor de bandera + iconos de formato */}
-        <div className="absolute bottom-2 left-8 right-0 flex items-center justify-between px-2">
-          <span className="text-3xl sm:text-xl md:text-2xl lg:text-3xl leading-none">
+        <div className="flex items-center justify-between px-2 mt-4">
+          <span className="text-xl sm:text-xl md:text-2xl lg:text-3xl leading-none">
             {getFlagEmoji(album.country)}
           </span>
 
@@ -115,7 +115,7 @@ const AlbumCard = React.forwardRef<HTMLDivElement, AlbumCardProps>(({ album }, r
                 src={icon}
                 alt="Formato"
                 loading="lazy"
-                className="w-10 h-10 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+                className="w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
               />
             ))}
           </div>
