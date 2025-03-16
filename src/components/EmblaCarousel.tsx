@@ -18,10 +18,11 @@ type PropType = {
   albums: Album[]
   endpoint: string
   icono: string
+  albums_collection: string
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { options, albums, title, endpoint, icono } = props
+  const { options, albums, title, endpoint, icono, albums_collection } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const [searchParams] = useSearchParams();
   const filter = searchParams.get('filter') || 'all';
@@ -36,7 +37,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   const onScroll = useCallback((emblaApi: EmblaCarouselType) => {
     const progress = Math.max(0, Math.min(1, emblaApi.scrollProgress()))
-    // setScrollProgress(progress * 100) // sin loop
+// setScrollProgress(progress * 100) // sin loop
     setScrollProgress((prevProgress) => {
       if (Math.abs(prevProgress - progress * 100) > 0.5) {
         return progress * 100;
@@ -58,7 +59,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   return (
     <section className="embla">
       <div className="embla__header flex items-center justify-between">
-        <a href={`${endpoint}?title=${encodeURIComponent(title)}&filter=${filter}`}><h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
+        <a href={`ap/${albums_collection}/${endpoint}?title=${encodeURIComponent(title)}&filter=${filter}`}><h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
           {icono && (
             <img
               src={icono}
@@ -74,8 +75,6 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           </span>
         </h2>
         </a>
-
-
         <div className="embla__progress">
           <div
             className="embla__progress__bar"

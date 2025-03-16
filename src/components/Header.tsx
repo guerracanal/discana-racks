@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaInfoCircle, FaRecordVinyl, FaSearch, FaSpotify, FaStarOfLife } from "react-icons/fa";
-import logo from "../assets/logo.svg"; // Ajusta la ruta de tu archivo SVG
+import logo from "../assets/logo.svg";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { useSearchParams } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const Header = () => {
   const filter = searchParams.get('filter') || 'all';
 
   const handleFilterChange = (option: "all" | "disc" | "spotify") => {
-    setSearchParams({ filter: option }); // Actualiza la URL
+    setSearchParams({ filter: option });
   };
 
   return (

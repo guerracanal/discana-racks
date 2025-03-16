@@ -1,4 +1,4 @@
-import EmblaCarousel from "./EmblaCarousel"; // Asumiendo que ya lo tienes
+import EmblaCarousel from "./EmblaCarousel";
 
 interface RackCarouselProps {
   title: string;
@@ -6,6 +6,7 @@ interface RackCarouselProps {
   options: any;
   icono: string;
   fetchAlbumsHook: (endpoint: string) => { albums: any[]; loading: boolean; error: any };
+  albums_collection: string;
 }
 
 const RackCarousel = ({
@@ -14,6 +15,7 @@ const RackCarousel = ({
   options,
   icono,
   fetchAlbumsHook,
+  albums_collection,
 }: RackCarouselProps) => {
   const { albums, loading, error } = fetchAlbumsHook(endpoint);
 
@@ -29,6 +31,7 @@ const RackCarousel = ({
       options={options}
       endpoint={endpoint}
       icono={icono}
+      albums_collection={albums_collection}
     />
   );
 };

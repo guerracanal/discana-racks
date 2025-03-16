@@ -6,10 +6,12 @@ import AlbumCard from "../components/AlbumCard";
 import "../styles/AlbumsPage.css";
 import Header from "../components/Header";
 
-const AlbumsPage: React.FC = () => {
-  const { category, "*": restPath } = useParams<{ category: string; "*": string }>();
-  const path = `${category}/${restPath}`;
-  const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(path);
+interface AlbumsPageProps {}
+
+const AlbumsPage: React.FC<AlbumsPageProps> = () => {
+  const { albums_collection = "albums", "*": category } = useParams<{ albums_collection: string; "*": string }>();
+  const path = category || "";
+  const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(albums_collection, path);
   const [searchParams] = useSearchParams();
   const filter = (searchParams.get('filter') as "all" | "disc" | "spotify") || 'all';
   const navigate = useNavigate();

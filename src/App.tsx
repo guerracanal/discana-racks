@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import { useFetchAlbums } from "./hooks/useFetchAlbums";
 import { useFetchRacks } from "./hooks/useFetchRacks";
-import { useFetchAlbumsPendientes } from "./hooks/useFetchAlbumsPendientes";
-import { useFetchRacksPendientes } from "./hooks/useFetchRacksPendientes";
-import { useFetchRacksTypes } from "./hooks/useFetchRacksTypes";
 import AlbumsPage from "./pages/AlbumsPage";
 
 const App: React.FC = () => {
@@ -16,8 +13,11 @@ const App: React.FC = () => {
           path="/"
           element={
             <HomePage
-              useFetchAlbumsHook={useFetchAlbums}
-              useFetchRacksHook={useFetchRacks}
+              useFetchAlbumsHook={(albums_collection: string, endpoint: string, random: boolean) => useFetchAlbums(albums_collection, endpoint, random)}
+              useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
+              albums_collection="albums"
+              racks_collection="racks"
+              random={true}
             />
           }
         />
@@ -25,8 +25,11 @@ const App: React.FC = () => {
           path="/pendientes"
           element={
             <HomePage
-              useFetchAlbumsHook={useFetchAlbumsPendientes}
-              useFetchRacksHook={useFetchRacksPendientes}
+              useFetchAlbumsHook={(albums_collection: string, endpoint: string, random: boolean) => useFetchAlbums(albums_collection, endpoint, random)}
+              useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
+              albums_collection="albums_ptes"
+              racks_collection="racks_ptes" 
+              random={false}            
             />
           }
         />
@@ -34,12 +37,15 @@ const App: React.FC = () => {
           path="/types"
           element={
             <HomePage
-              useFetchAlbumsHook={useFetchAlbums}
-              useFetchRacksHook={useFetchRacksTypes}
+              useFetchAlbumsHook={(albums_collection: string, endpoint: string, random: boolean) => useFetchAlbums(albums_collection, endpoint, random)}
+              useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
+              albums_collection="albums"
+              racks_collection="racks_types"
+              random={true}            
             />
           }
         />
-        <Route path="/:category/*" element={<AlbumsPage />} />
+        <Route path="/ap/:albums_collection/*" element={<AlbumsPage />} />
       </Routes>
     </Router>
   );

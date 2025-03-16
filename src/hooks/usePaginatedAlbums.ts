@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Album } from "../types/album";
 import { useSearchParams } from 'react-router-dom';
 
-const usePaginatedAlbums = (endpoint: string) => {
+const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
   const [albums, setAlbums] = useState<Album[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -12,12 +12,13 @@ const usePaginatedAlbums = (endpoint: string) => {
 
   const [searchParams] = useSearchParams();
   const filter = searchParams.get('filter') || 'all';
+  const random = searchParams.get('random') || 'false';
 
   useEffect(() => {
     setAlbums([]);
     setPage(1);
     setHasMore(true);
-  }, [endpoint, filter]); // Add filter as a dependency
+  }, [albums_collection, endpoint, filter]); // Add albums_collection as a dependency
 
   useEffect(() => {
     const fetchAlbums = async () => {
@@ -26,7 +27,7 @@ const usePaginatedAlbums = (endpoint: string) => {
       setLoading(true);
 
       try {
-        const url = `${import.meta.env.VITE_API_URL}/api/albums/${endpoint}?page=${page}&limit=20&filter=${filter}`;
+        const url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?page=${page}&limit=20&filter=${filter}&random=${random}`;
         console.log(url);
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error fetching albums");
@@ -46,7 +47,7 @@ const usePaginatedAlbums = (endpoint: string) => {
     };
 
     fetchAlbums();
-  }, [endpoint, page, filter]); // Add filter as a dependency
+  }, [albums_collection, endpoint, page, filter, random]); // Add random as a dependency
 
   const loadMore = () => {
     if (hasMore && !loadingRef.current) {

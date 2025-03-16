@@ -4,7 +4,13 @@ import { Rack } from "../types/rack";
 import { HomePageProps } from "../types/home";
 import { FC } from "react";
 
-const HomePage: FC<HomePageProps> = ({ useFetchAlbumsHook, useFetchRacksHook }) => {
+interface HomePagePropsExtended extends HomePageProps {
+  albums_collection: string;
+  racks_collection: string;
+  random: boolean;
+}
+
+const HomePage: FC<HomePagePropsExtended> = ({ useFetchAlbumsHook, useFetchRacksHook, albums_collection, racks_collection, random }) => {
 
   const OPTIONS = {
     align: "start",
@@ -12,7 +18,7 @@ const HomePage: FC<HomePageProps> = ({ useFetchAlbumsHook, useFetchRacksHook }) 
     loop: true,
   };
 
-  const { racks, loading, error } = useFetchRacksHook();
+  const { racks, loading, error } = useFetchRacksHook(racks_collection);
 
   if (loading) {
     return (
@@ -113,7 +119,9 @@ const HomePage: FC<HomePageProps> = ({ useFetchAlbumsHook, useFetchRacksHook }) 
               rack={rack}
               options={OPTIONS}
               fetchAlbumsHook={useFetchAlbumsHook}
-            />
+              rack_collection={racks_collection} 
+              albums_collection={albums_collection}
+              random={random} />
           ))}
         </main>
       </div>

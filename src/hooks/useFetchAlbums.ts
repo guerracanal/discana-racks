@@ -1,21 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'react-router-dom';
 
-
-export function useFetchAlbums(endpoint: string) {
+export function useFetchAlbums(albums_collection: string, endpoint: string = "", ramdom: boolean = false) {
   const [albums, setAlbums] = useState<any[]>([]);
-  /*
-  const [setPagination] = useState({
-    page: 1,
-    per_page: 10,
-    total: 0,
-    total_pages: 1
-  });
-  */
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const page = 1
-  const limit = 50
+  const page = 1;
+  const limit = 50;
 
   const [searchParams] = useSearchParams();
   const filter = searchParams.get('filter') || 'all';
@@ -23,14 +14,11 @@ export function useFetchAlbums(endpoint: string) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `${import.meta.env.VITE_API_URL}/api/albums/${endpoint}?limit=${limit}&page=${page}&filter=${filter}`;
-
+        const url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?limit=${limit}&page=${page}&filter=${filter}&random=${ramdom}`;
         console.log(url);
-
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error en la respuesta");
         const result = await response.json();
-    
         setAlbums(result.data);
       } catch (err) {
         console.error("Error fetching albums:", error);
@@ -41,7 +29,7 @@ export function useFetchAlbums(endpoint: string) {
     };
 
     fetchData();
-  }, [endpoint, filter]);
+  }, [albums_collection, endpoint, filter]);
 
   return { albums, loading, error };
 }

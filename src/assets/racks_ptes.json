@@ -43,13 +43,6 @@
     "order": 15
   },
   {
-    "title": "Corta duración",
-    "endpoint": "duration/20",
-    "description": "Discos cortos",
-    "order": 23
-  },
-  
-  {
     "title": "Cumplen 20 años",
     "endpoint": "year/2005",
     "description": "Cumplen 20 años",
@@ -108,17 +101,5 @@
     "endpoint": "decade/2020",
     "description": "Decada dde 2020",
     "order": 56
-  },
-  {
-    "title": "Time to relax",
-    "endpoint": "mood/relajado",
-    "description": "Mood relajado",
-    "order": 60
-  },
-  {
-    "title": "Energia para el día",
-    "endpoint": "mood/energético",
-    "description": "Mood energetico",
-    "order": 61
   }
 ]

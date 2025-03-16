@@ -7,7 +7,6 @@ import { AlbumCardProps } from '../types/album';
 const getFlagEmoji = (countryCode: string) => {
   // Soporte especial para Escocia
   if (countryCode.toUpperCase() === "GB-SCT") {
-    // Bandera de Escocia
     return "\u{1F3F4}\u{E0067}\u{E0062}\u{E0073}\u{E0063}\u{E0074}\u{E007F}";
   }
   return countryCode
@@ -17,29 +16,24 @@ const getFlagEmoji = (countryCode: string) => {
 
 const AlbumCard = React.forwardRef<HTMLDivElement, AlbumCardProps>(({ album }, ref) => {
 
-  // Ajusta estos valores según tu preferencia
   const MAX_TITLE_LENGTH = 18;
   const MAX_ARTIST_LENGTH = 15;
   const MAX_MOOD_LENGTH = 20;
   const MAX_SUBGENRES_LENGTH = 20;
 
-  // Estados para indicar si el texto supera el umbral de caracteres
   const [isTitleLong, setIsTitleLong] = useState(false);
   const [isArtistLong, setIsArtistLong] = useState(false);
   const [isMoodLong, setIsMoodLong] = useState(false);
   const [isSubgenresLong, setIsSubgenresLong] = useState(false);
 
-  // Array de iconos de formato (puede tener CD, vinilo, etc.)
   const formatIcons: string[] = [];
   if (album.format.includes("CD")) formatIcons.push(cdIcon);
   if (album.format.includes("vinilo")) formatIcons.push(vinylIcon);
 
   useEffect(() => {
-    // Creamos los strings de mood y subgéneros
     const moodString = album.mood.join(", ");
     const subgenresString = album.subgenres.join(", ");
 
-    // Comprobamos la longitud de cada campo
     setIsTitleLong(album.title.length > MAX_TITLE_LENGTH);
     setIsArtistLong(album.artist.length > MAX_ARTIST_LENGTH);
     setIsMoodLong(moodString.length > MAX_MOOD_LENGTH);

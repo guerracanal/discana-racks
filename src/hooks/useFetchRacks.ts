@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export function useFetchRacks() {
+export function useFetchRacks(racks_collection: string, endpoint: string = "") {
     const [racks, setRacks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -9,7 +9,7 @@ export function useFetchRacks() {
         const fetchRacks = async () => {
             try {
 
-                const url = import.meta.env.VITE_API_URL + '/api/racks/'
+                const url = endpoint || `${import.meta.env.VITE_API_URL}/api/v2/r/${racks_collection}/`;
 
                 console.log(url);
 
@@ -30,7 +30,7 @@ export function useFetchRacks() {
         };
 
         fetchRacks();
-    }, []);
+    }, [racks_collection, endpoint]);
 
     return { racks, loading, error };
 }
