@@ -1,10 +1,14 @@
+:root {
+  --header-height: 100px; /* Height of the <Header /> */
+}
+
 .albums-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
   padding: 16px;
-  max-width: 90%;
-  margin: 8rem auto;
+  max-width: 95%;
+  margin: 2rem auto;
 }
 
 .albums-grid__item {
@@ -14,51 +18,19 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease;
-  position: relative; /* Ensure absolute elements are positioned correctly */
+  position: relative;
 }
 
 .albums-grid__item:hover {
   transform: translateY(-5px);
 }
 
-.albums-grid__item .album-card {
-  width: 100%;
-  height: 100%;
-  position: relative; /* Ensure absolute elements are positioned correctly */
-}
-
 .albums-grid__item .album-card .cover {
   width: 100%;
   height: auto;
-  max-width: 130px; /* Adjust the size of the cover */
-  max-height: 130px; /* Adjust the size of the cover */
+  max-width: 130px;
+  max-height: 130px;
   margin: 0 auto;
-}
-
-.albums-grid__item .album-card .top,
-.albums-grid__item .album-card .bottom {
-  position: absolute; /* Ensure floating elements are positioned correctly */
-  width: 100%; /* Ensure elements take full width */
-  left: 0; /* Align elements to the left */
-  transform: none;
-  margin-top: 8px;
-  z-index: 1; /* Ensure elements are above other content */
-}
-
-.albums-grid__item .album-card .top {
-  top: 0; /* Align top element to the top */
-}
-
-.albums-grid__item .album-card .bottom {
-  bottom: 0; /* Align bottom element to the bottom */
-}
-
-.bg-header-background {
-  background-color: #333; /* Replace with the actual header background color */
-}
-
-.bg-header-hover {
-  background-color: #555; /* Replace with the actual header hover color */
 }
 
 .popup-container {
@@ -70,9 +42,13 @@
   height: 80%;
   background-color: #424242;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
   overflow-y: auto;
   border-radius: 8px;
+}
+
+.popup-container header{
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Tablet styles */
@@ -90,6 +66,12 @@
   .albums-grid__item .album-card .cover {
     max-width: 100px;
     max-height: 100px;
+  }
+
+  .popup-container {
+    width: 90%;
+    height: 85%;
+    padding: 12px;
   }
 }
 
@@ -109,6 +91,12 @@
     width: 100px;
     height: 100px;
     margin: 0 auto;
-    display: block; /* Ensure the cover image is centered */
+    display: block;
+  }
+
+  .popup-container {
+    width: 95%;
+    height: 90%;
+    padding: 8px;
   }
 }

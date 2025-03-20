@@ -1,56 +1,54 @@
-import React, { useRef, useCallback, useEffect, useState } from "react";
+import * as React from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import { useParams, useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaTimes } from "react-icons/fa";
 import usePaginatedAlbums from "../hooks/usePaginatedAlbums";
 import AlbumCard from "../components/AlbumCard";
 import "../styles/AlbumsPage.css";
 import Header from "../components/Header";
+import LoadingPopup from "../components/LoadingPopup";
 
-interface AlbumsPageProps {}
-
-const AlbumsPage: React.FC<AlbumsPageProps> = () => {
+const AlbumsPage: React.FC = () => {
   const { albums_collection = "albums", "*": category } = useParams<{ albums_collection: string; "*": string }>();
   const path = category || "";
   const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(albums_collection, path);
   const [searchParams] = useSearchParams();
-  const filter = (searchParams.get('filter') as "all" | "disc" | "spotify") || 'all';
+  const filterType = (searchParams.get('filter') as "all" | "disc" | "spotify") || 'all';
   const searchQuery = searchParams.get('search') || '';
   const navigate = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const title = queryParams.get('title');
-  const [isPopupVisible, setIsPopupVisible] = useState(window.innerWidth >= 1024);
+  const { title: stateTitle } = location.state || {};
+  const pageTitle = stateTitle || `Resultados de la búsqueda: ${searchQuery}`;
+  const [isPopupVisible, setPopupVisibility] = useState(window.innerWidth >= 1024);
+  const [initialLoading, setInitialLoading] = useState(true); // Track initial loading state
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
+  const handleBackNavigation = () => navigate(-1);
 
-  const handleCloseClick = () => {
-    setIsPopupVisible(false);
+  const handleClosePopup = () => {
+    setPopupVisibility(false);
     navigate(-1);
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsPopupVisible(window.innerWidth >= 1024);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const updatePopupVisibility = () => setPopupVisibility(window.innerWidth >= 1024);
+    window.addEventListener('resize', updatePopupVisibility);
+    return () => window.removeEventListener('resize', updatePopupVisibility);
   }, []);
 
   useEffect(() => {
-    loadMore();
-  }, [path, loadMore, filter, searchQuery]);
+    if (initialLoading) {
+      loadMore(); // Load the first page of albums
+      setInitialLoading(false); // Mark initial loading as complete
+    }
+  }, [initialLoading, loadMore]);
 
   const observer = useRef<IntersectionObserver | null>(null);
-  const lastAlbumElementRef = useCallback(
+  const lastAlbumRef = useCallback(
     (node: HTMLDivElement | null) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          loadMore();
-        }
+        if (entries[0].isIntersecting && hasMore) loadMore();
       });
       if (node) observer.current.observe(node);
     },
@@ -59,37 +57,51 @@ const AlbumsPage: React.FC<AlbumsPageProps> = () => {
 
   return (
     <>
-      <Header /> {/* Render the Header component */}
-      <div className={`pt-0 ${isPopupVisible ? 'popup-container' : ''}`}>
-        <header className={`fixed top-0 left-0 right-0 z-50 bg-gray-800 shadow-lg h-16 flex items-center ${isPopupVisible ? 'popup-header' : ''}`}>
-          <button onClick={handleBackClick} className="text-white ml-4">
+      <Header />
+      <LoadingPopup isLoading={initialLoading} /> {/* Show only during initial loading */}
+      <div
+        className={`${isPopupVisible ? 'popup-container' : ''}`}
+        style={{
+          position: "relative",
+          overflow: "visible",
+          marginTop: isPopupVisible ? "80px" : "0",
+          paddingTop: isPopupVisible ? "0px" : "0"
+        }}
+      >
+        <header className={`sticky top-16 left-0 right-0 z-40 bg-gray-800 shadow-lg h-16 flex items-center ${isPopupVisible ? 'popup-header' : ''}`}>
+          <button onClick={handleBackNavigation} className="cursor-pointer text-white ml-4">
             <FaArrowLeft size={20} />
           </button>
-          <h1 className="text-2xl font-bold text-white mx-auto">{title || 'Resultados de la búsqueda: '+ searchQuery}</h1>
+          <h1 className="text-2xl font-bold text-white mx-auto">{pageTitle}</h1>
           {isPopupVisible && (
-            <button onClick={handleCloseClick} className="text-white mr-4">
+            <button onClick={handleClosePopup} className="cursor-pointer text-white mr-4">
               <FaTimes size={20} />
             </button>
           )}
         </header>
 
         <section className="albums-grid pt-16">
-          {albums.map((album, index) => {
-            if (albums.length === index + 1) {
-              return (
-                <div className="albums-grid__item" key={album._id} ref={lastAlbumElementRef}>
-                  <AlbumCard album={album} filter={filter} />
-                </div>
-              );
-            } else {
-              return (
-                <div className="albums-grid__item" key={album._id}>
-                  <AlbumCard album={album} filter={filter} />
-                </div>
-              );
-            }
-          })}
+          {albums.map((album, index) => (
+            <div
+              className="albums-grid__item"
+              key={album._id}
+              ref={albums.length === index + 1 ? lastAlbumRef : null}
+            >
+              <AlbumCard album={album} filter={filterType} />
+            </div>
+          ))}
         </section>
+
+        {loading && (
+          <div className="text-center text-white mt-4">
+            <img
+              src="/assets/spinner.svg"
+              alt="Cargando..."
+              className="w-12 h-12 animate-spin mx-auto"
+            />
+            Cargando...
+          </div>
+        )}
       </div>
     </>
   );

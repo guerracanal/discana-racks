@@ -23,6 +23,7 @@ const RackCarousel = ({
     return <div className="h-64 animate-pulse bg-gray-800 rounded" />;
   if (error)
     return <p>Error cargando {title}: {error}</p>;
+  if (albums.length === 0) return null; // Omitir si no hay elementos
 
   return (
     <EmblaCarousel

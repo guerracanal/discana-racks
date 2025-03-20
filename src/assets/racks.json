@@ -198,5 +198,11 @@
     "endpoint": "moods/Energético",
     "description": "Mood energetico",
     "order": 61
+  },
+  {
+    "title": "Whistlist",
+    "endpoint": "compilations/whistlist",
+    "description": "Whistlist",
+    "order": 100
   }
 ]

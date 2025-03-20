@@ -37,10 +37,17 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
       }
 
       try {
-        let url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?page=${page}&limit=20&filter=${filter}&random=${random}`;
+        let url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?page=${page}&limit=50&filter=${filter}&random=${random}`;
         if (searchQuery) {
-          url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/title/${searchQuery}?page=${page}&limit=20&filter=${filter}&random=${random}`;
+          url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/title/${searchQuery}?page=${page}&limit=50&filter=${filter}&random=${random}`;
         }
+
+        // Check for user_id in session and append it to the URL if it exists
+        const user_id = sessionStorage.getItem('user_id');
+        if (user_id) {
+          url += `&user_id=${user_id}`;
+        }
+
         console.log(url);
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error fetching albums");

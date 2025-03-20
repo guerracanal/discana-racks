@@ -1,8 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import * as React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { EmblaCarouselType, EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import AlbumCard from "./AlbumCard";
 import { Album } from '../types/album';
+import { useNavigate } from 'react-router-dom';
 
 import {
   PrevButton,
@@ -25,6 +27,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const { options, albums, title, endpoint, icono, albums_collection } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate(); // Hook para navegación programática
   const filter = searchParams.get('filter') || 'all';
   const [scrollProgress, setScrollProgress] = useState(0)
 
@@ -56,25 +59,33 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       .on('slideFocus', onScroll)
   }, [emblaApi, onScroll])
 
+  const handleNavigation = () => {
+    navigate(`/ap/${albums_collection}/${endpoint}`, {
+      state: { title, filter },
+    });
+  };
+
   return (
     <section className="embla">
       <div className="embla__header flex items-center justify-between">
-        <a href={`ap/${albums_collection}/${endpoint}?title=${encodeURIComponent(title)}&filter=${filter}`}><h2 className="title-rack text-xl lg:text-4xl font-bold group inline-flex items-center">
-          {icono && (
-            <img
-              src={icono}
-              alt={title}
-              className="w-6 h-6 mr-2"
-            />
-          )}
-          {title}
-          <span className="more text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2">
-            <span className="flex items-center space-x-1">
+        <button
+          onClick={handleNavigation}
+          className="group inline-flex items-center cursor-pointer"
+        >
+          <h2 className="title-rack text-xl lg:text-4xl font-bold flex items-center">
+            {icono && (
+              <img
+                src={icono}
+                alt={title}
+                className="w-6 h-6 mr-2"
+              />
+            )}
+            {title}
+            <span className="more text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 flex items-center">
               <FaAngleDoubleRight />
             </span>
-          </span>
-        </h2>
-        </a>
+          </h2>
+        </button>
         <div className="embla__progress">
           <div
             className="embla__progress__bar"
