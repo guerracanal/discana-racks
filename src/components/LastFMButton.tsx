@@ -8,7 +8,7 @@ const LastFMButton: React.FC = () => {
   const [userData, setUserData] = useState<{ lastfm_id: string } | null>(null);
 
   const handleLogin = () => {
-    //const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
+    //const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
     //window.location.href = `${backendUrl}/api/v2/lastfm/login`;
   };
 

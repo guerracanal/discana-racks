@@ -16,7 +16,7 @@ const SpotifyButton: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLogin = () => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
+    const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
     window.location.href = `${backendUrl}/api/v2/s/login`;
   };
 
