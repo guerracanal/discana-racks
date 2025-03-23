@@ -1,5 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
+  <style>
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .vinyl {
+      animation: spin 3s linear infinite;
+    }
+  </style>
     <g transform="translate(17 17)">
+    <g class="vinyl">
       <circle r="16" fill="black" stroke="white" stroke-width="1"/>
       
       <circle r="12" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="20,20"/>
@@ -9,5 +19,7 @@
 
       <circle r="2" fill="none" stroke="white" stroke-width="5"/>
       <circle r="1" fill="black"/>
+
+    </g>
     </g>
 </svg>

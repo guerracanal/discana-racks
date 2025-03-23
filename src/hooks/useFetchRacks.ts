@@ -16,7 +16,7 @@ export function useFetchRacks(racks_collection: string, endpoint: string = "") {
             }
 
             try {
-                const url = endpoint || `${import.meta.env.VITE_API_URL}/api/v2/r/${racks_collection}/`;
+                const url = endpoint || `${import.meta.env.VITE_API_URL}/api/v2/r/${racks_collection}`;
                 console.log(url);
                 const response = await fetch(url);
                 if (!response.ok) throw new Error("Error al obtener los racks");

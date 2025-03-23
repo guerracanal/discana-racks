@@ -37,9 +37,37 @@ const usePaginatedAlbums = (albums_collection: string, endpoint: string) => {
       }
 
       try {
-        let url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/${endpoint}?page=${page}&limit=50&filter=${filter}&random=${random}`;
+        let baseUrl = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}`;
+        let urlParams = new URLSearchParams();
+        urlParams.append('page', page.toString());
+        urlParams.append('limit', '50'); // Keep limit consistent
+        urlParams.append('filter', filter);
+        urlParams.append('random', random);
+
+
+        //Improved URL parameter handling (mirroring useFetchAlbums)
+        if (endpoint.includes("?")) {
+          const [baseEndpoint, queryParams] = endpoint.split("?");
+          baseUrl += `/${baseEndpoint}`;
+          const endpointParams = new URLSearchParams(queryParams);
+
+          // Override default parameters if they exist in the endpoint
+          if (endpointParams.has('limit')) urlParams.set('limit', endpointParams.get('limit')!);
+          if (endpointParams.has('page')) urlParams.set('page', endpointParams.get('page')!);
+          if (endpointParams.has('filter')) urlParams.set('filter', endpointParams.get('filter')!);
+          if (endpointParams.has('random')) urlParams.set('random', endpointParams.get('random')!);
+
+          // Append the rest of the endpoint params
+          for (const [key, value] of endpointParams.entries()) {
+            if (!urlParams.has(key)) urlParams.append(key, value);
+          }
+        } else if (endpoint) {
+          baseUrl += `/${endpoint}`;
+        }
+
+        let url = `${baseUrl}?${urlParams.toString()}`;
         if (searchQuery) {
-          url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/title/${searchQuery}?page=${page}&limit=50&filter=${filter}&random=${random}`;
+          url = `${import.meta.env.VITE_API_URL}/api/v2/a/${albums_collection}/title/${searchQuery}?${urlParams.toString()}`;
         }
 
         // Check for user_id in session and append it to the URL if it exists

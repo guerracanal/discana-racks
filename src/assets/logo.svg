@@ -1,11 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-14 h-14 text-white">
-  <g transform="rotate(-10 32 32)">
-    <rect x="12" y="10" width="40" height="44" rx="6" ry="6" fill="none" stroke="white" stroke-width="2" />
-  </g>
-  <g>
-    <circle cx="32" cy="32" r="10" fill="none" stroke="white" stroke-width="2" />
-    <path d="M32 22 a10 10 0 0 1 0 20" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" />
-    <path d="M32 24 a8 8 0 0 1 0 16" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" />
-    <circle cx="32" cy="32" r="3" fill="white" stroke="none" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
+    <g transform="translate(17 17)">
+      <circle r="16" fill="black" stroke="white" stroke-width="1"/>
+      
+      <circle r="12" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="20,20"/>
+      <circle r="10" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="15,15"/>
+      <circle r="8" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="12,12"/>
+      <circle r="6" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="10,10"/>
+
+      <circle r="2" fill="none" stroke="white" stroke-width="5"/>
+      <circle r="1" fill="black"/>
+    </g>
 </svg>

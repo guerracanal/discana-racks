@@ -30,8 +30,8 @@ const App: React.FC = () => {
                 useFetchAlbumsHook={(albums_collection: string, endpoint: string, random: boolean) => useFetchAlbums(albums_collection, endpoint, random)}
                 useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
                 albums_collection="albums_ptes"
-                racks_collection="racks_ptes" 
-                random={false}            
+                racks_collection="racks_ptes"
+                random={false}
               />
             }
           />
@@ -43,11 +43,11 @@ const App: React.FC = () => {
                 useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
                 albums_collection="albums"
                 racks_collection="racks_types"
-                random={true}            
+                random={true}
               />
             }
           />
-          <Route path="/ap/:albums_collection/*" element={<AlbumsPage />} />
+          <Route path="/ap/:albums_collection" element={<AlbumsPage />} />
           <Route path="/ap/albums" element={<AlbumsPage />} />
           <Route
             path="/spotify"
@@ -59,7 +59,35 @@ const App: React.FC = () => {
                 useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
                 albums_collection="spotify"
                 racks_collection="racks_spotify"
-                random={true}
+                random={false}
+              />
+            }
+          />
+          <Route
+            path="/lastfm"
+            element={
+              <HomePage
+                useFetchAlbumsHook={(albums_collection: string, endpoint: string, random: boolean) =>
+                  useFetchAlbums(albums_collection, endpoint, random)
+                }
+                useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
+                albums_collection="lastfm"
+                racks_collection="racks_lastfm"
+                random={false}
+              />
+            }
+          />
+          <Route
+            path="/discogs"
+            element={
+              <HomePage
+                useFetchAlbumsHook={(albums_collection: string, endpoint: string, random: boolean) =>
+                  useFetchAlbums(albums_collection, endpoint, random)
+                }
+                useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
+                albums_collection="discogs"
+                racks_collection="racks_discogs"
+                random={false}
               />
             }
           />

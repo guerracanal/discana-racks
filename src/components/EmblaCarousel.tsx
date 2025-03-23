@@ -12,7 +12,7 @@ import {
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
 import { FaAngleDoubleRight } from 'react-icons/fa';
-import { useSearchParams } from 'react-router-dom';
+//import { useSearchParams } from 'react-router-dom';
 
 type PropType = {
   options?: EmblaOptionsType
@@ -26,9 +26,9 @@ type PropType = {
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { options, albums, title, endpoint, icono, albums_collection } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
-  const [searchParams] = useSearchParams();
+  //const [searchParams] = useSearchParams();
   const navigate = useNavigate(); // Hook para navegación programática
-  const filter = searchParams.get('filter') || 'all';
+  //const filter = searchParams.get('filter') || 'all';
   const [scrollProgress, setScrollProgress] = useState(0)
 
   const {
@@ -60,9 +60,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, onScroll])
 
   const handleNavigation = () => {
-    navigate(`/ap/${albums_collection}/${endpoint}`, {
-      state: { title, filter },
-    });
+    let encodeEndpoint = encodeURIComponent(endpoint);
+    navigate(`/ap/${albums_collection}?endpoint=${encodeEndpoint}`, { state: { title } });
   };
 
   return (

@@ -17,7 +17,7 @@ const SpotifyButton: React.FC = () => {
 
   const handleLogin = () => {
     const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-    window.location.href = `${backendUrl}/api/v2/s/login`;
+    window.location.href = `${backendUrl}/api/v2/spotify/login`;
   };
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const SpotifyButton: React.FC = () => {
       <LoadingPopup isLoading={isLoading} />
       <div
         onClick={handleButtonClick}
-        className="cursor-pointer flex items-center space-x-2 text-gray-400 hover:text-white"
+        className="cursor-pointer flex items-center space-x-2 text-gray-400 hover:text-[#1ED760]"
       >
         <FaSpotify size={20} />
         <span>{userData ? userData.spotify_id : 'Spotify'}</span>

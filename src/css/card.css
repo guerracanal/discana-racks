@@ -1,52 +1,152 @@
-/*
-#101010	(16,16,16)
-#fefefe	(254,254,254)
-#ee514b	(238,81,75)
-#bebebe	(190,190,190)
-#4a4a4a	(74,74,74)
-
-#872434	(135,36,52)
-#7e696d	(126,105,109)
-#fefefe	(254,254,254)
-#eeeeee	(238,238,238)
-#000000	(0,0,0)
-*/
-
-.card{
-    --color-card: #eeeeee;
-    --color-title: #ee514b;
-    --color-artist: #7e696d;
-    --color-info: #7e696d;
-    --color-genre: #ee514b;
-    --color-subgenres: #7e696d;
-    --color-mood: #7e696d;
+:root {
+  /* Colores base */
+  --color-card: #fffcf5; /* Color base de la carta */
+  --color-title: #ee514b;
+  --color-artist: #7e696d;
+  --color-info: #7e696d;
+  --color-genre: #ee514b;
+  --color-subgenres: #7e696d;
+  --color-mood: #7e696d;
+  --border-primary: rgba(0, 0, 0, 0.2); /* Borde más marcado */
+  --accent-color: #f3e9d2; /* Color de acento dorado */
+  
+  /* Opacidades */
+  --glow-opacity: 0.3; /* Opacidad del resplandor */
+  --shine-opacity: 0.8; /* Opacidad del brillo */
+  
+  /* Duraciones */
+  --light-effect-duration: 0.3s; /* Duración del efecto de luz */
+  --hover-duration: 0.3s; /* Duración del efecto hover */
+  
+  /* Sombra y reflejos */
+  --box-shadow-normal: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 10px 10px 30px rgba(0, 0, 0, 0.2), inset 0 3px 8px rgba(192, 168, 120, 0.1);
+  --border-hover: rgba(243, 233, 210, 0.6); /* Color del borde en hover */
 }
 
-.embla__slide__card{
-    --color-card: ;
-    background-color: #eeeeee;
+
+.card {
+  background: var(--color-card);
+  border-radius: 1rem; /* Redondeo de bordes */
+  border: 3px solid var(--border-primary);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.2rem;
+  flex: 1;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all var(--hover-duration) ease; /* Transición suave para hover */
+
+  /* Efecto de textura para simular material */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(15deg, rgba(255, 255, 255, 0.8) 20%, rgba(255, 250, 240, 0.5) 60%, transparent 100%);
+  background-size: 10px 10px;
+
+  /* Sombra para dar relieve */
+  box-shadow: var(--box-shadow-normal); 
+
+  /* Reflejo suave en diagonal */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(243, 233, 210, 0.3);
+    border-radius: 0.55rem;
+    pointer-events: none;
+    transition: inherit;
+  }
+
+  /* Efecto de resplandor base */
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, var(--glow-opacity)) 50%, rgba(255, 255, 255, 0) 55%);
+    opacity: var(--shine-opacity);
+    pointer-events: none;
+  }
 }
 
-.card .title{
-    color: var(--color-title);
+/* Estados de hover */
+.card:hover {
+  border-color: var(--accent-color);
+  box-shadow: var(--box-shadow-hover); /* Efecto más pronunciado en hover */
+
+  &::after {
+    border-color: var(--border-hover);
+    border-width: 1.5px;
+    inset: 2px;
+  }
+
+  &::before {
+    opacity: var(--shine-opacity);
+    animation: card-glow 2s infinite, shine 3s infinite;
+  }
 }
 
-.card .artist{
-    color: var(--color-artist);
+/* Animaciones */
+@keyframes card-glow {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
 
-.card .mood{
-    color: var(--color-mood);
+@keyframes shine {
+  0% {
+    transform: translate(0, 0) rotate(45deg);
+  }
+  100% {
+    transform: translate(100%, 100%) rotate(45deg);
+  }
 }
 
-.card .info{
-    color: var(--color-info);
+/* Colores de texto */
+.card .title {
+  color: var(--color-title);
 }
 
-.card .genre{
-    color: var(--color-genre);
+.card .artist {
+  color: var(--color-artist);
 }
 
-.card .subgenres{
-    color: var(--color-subgenres);
+.card .mood {
+  color: var(--color-mood);
+}
+
+.card .info {
+  color: var(--color-info);
+}
+
+.card .genre {
+  color: var(--color-genre);
+}
+
+.card .subgenres {
+  color: var(--color-subgenres);
+}
+
+.cover {
+  width: 100%;
+  max-width: 250px; /* Tamaño máximo para imágenes grandes */
+  height: auto;
+}
+
+.box {
+  flex-grow: 1; /* Ocupar espacio disponible */
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }

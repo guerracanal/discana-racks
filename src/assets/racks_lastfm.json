@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Esta semana",
+        "endpoint": "me?period=7day&limit=10&detail=true",
+        "description": "7day",
+        "order": 1
+    },
+    {
+        "title": "Este mes",
+        "endpoint": "me?period=1month&limit=10&detail=true",
+        "description": "1month",
+        "order": 2
+    },
+    {
+        "title": "Este año",
+        "endpoint": "me?period=12month&limit=10&detail=true",
+        "description": "12month",
+        "order": 3
+    },
+    {
+        "title": "En total",
+        "endpoint": "me?period=overall&limit=10&detail=true",
+        "description": "overall",
+        "order": 4
+    }
+]

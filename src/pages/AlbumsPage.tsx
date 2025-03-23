@@ -7,13 +7,21 @@ import AlbumCard from "../components/AlbumCard";
 import "../styles/AlbumsPage.css";
 import Header from "../components/Header";
 import LoadingPopup from "../components/LoadingPopup";
+import spinner from "../assets/spinner.svg";
 
 const AlbumsPage: React.FC = () => {
-  const { albums_collection = "albums", "*": category } = useParams<{ albums_collection: string; "*": string }>();
-  const path = category || "";
-  const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(albums_collection, path);
+  //const { albums_collection = "albums", "*": category } = useParams<{ albums_collection: string; "*": string }>();
+  //const path = category || "";
+  //const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(albums_collection, path);
+  const { albums_collection = "albums" } = useParams(); // Keep this for albums_collection
   const [searchParams] = useSearchParams();
+  const endpoint = searchParams.get('endpoint') || ''; // Or a more appropriate default
   const filterType = (searchParams.get('filter') as "all" | "disc" | "spotify") || 'all';
+  const albumsCollectionParam = searchParams.get('albums_collection'); // Get albums_collection from query parameters if available
+  const albums_collection_param = albumsCollectionParam ?? albums_collection; // Use query parameter or route parameter
+
+  const { albums, loadMore, hasMore, loading } = usePaginatedAlbums(albums_collection_param, endpoint); // Usa albums_collection_param
+
   const searchQuery = searchParams.get('search') || '';
   const navigate = useNavigate();
   const location = useLocation();
@@ -95,9 +103,9 @@ const AlbumsPage: React.FC = () => {
         {loading && (
           <div className="text-center text-white mt-4">
             <img
-              src="/assets/spinner.svg"
+              src={spinner}
               alt="Cargando..."
-              className="w-12 h-12 animate-spin mx-auto"
+              className="w-12 h-12 mx-auto"
             />
             Cargando...
           </div>

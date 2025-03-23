@@ -5,45 +5,54 @@ import { SiDiscogs } from "react-icons/si";
 
 const DiscogsButton: React.FC = () => {
   const navigate = useNavigate();
-  const [userData, setUserData] = useState<{ discogs_id: string } | null>(null);
+  const [userData, setUserData] = useState<{ discogs_user: string, discogs_id: string } | null>(null);
+  const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
   const handleLogin = () => {
-    //const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
-    //window.location.href = `${backendUrl}/api/v2/discogs/login`;
+    console.log(`${backendUrl}/api/v2/discogs/auth`);
+    //window.location.href = `${backendUrl}/api/v2/discogs/auth`;
   };
 
   useEffect(() => {
-    const storedUserData = sessionStorage.getItem('discogsUserData');
-    if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
+    const checkAuth = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const discogs_id = params.get('discogs_id');
+      const discogs_user = params.get('discogs_user');
+
+      if (discogs_id && discogs_user) {
+        const userData = { discogs_id, discogs_user };
+        setUserData(userData);
+        sessionStorage.setItem('discogsUserData', JSON.stringify(userData));
+        
+        // Limpiar parámetros de la URL
+        navigate(window.location.pathname, { replace: true });
+      }
+    };
+
+    const storedData = sessionStorage.getItem('discogsUserData');
+    if (storedData) {
+      setUserData(JSON.parse(storedData));
       return;
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const discogs_id = params.get('discogs_id');
-
-    if (discogs_id) {
-      const userData = { discogs_id };
-      setUserData(userData);
-      sessionStorage.setItem('discogsUserData', JSON.stringify(userData));
-    }
-  }, []);
+    checkAuth();
+  }, [navigate]);
 
   const handleButtonClick = () => {
     if (!userData) {
       handleLogin();
     } else {
-      navigate('/discogs');
+      //navigate('/discogs');
     }
   };
 
   return (
     <div
-    onClick={handleButtonClick}
-      className="cursor-not-allowed flex items-center space-x-2 text-gray-500"
+      onClick={handleButtonClick}
+      className="cursor-not-allowed flex items-center space-x-2 hover:text-black text-gray-400 transition-colors"
     >
       <SiDiscogs size={20} />
-      <span>{userData ? userData.discogs_id : 'Discogs'}</span>
+      <span>{userData?.discogs_user || 'Discogs'}</span>
     </div>
   );
 };

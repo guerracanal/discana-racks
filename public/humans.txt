@@ -1,0 +1,22 @@
+/* TEAM */
+    Desarrollador y diseñador: Jorge Guerra Canal
+    Sitio web: [http://guerracanal.com]
+    Twitter: @[guerracanal]
+    bsky: @[cipomikanico.bsky.social]
+    LinkedIn: [https://www.linkedin.com/in/guerracanal/]
+    Email: [guerracanal@gmail.com]
+    Ubicación: [Gijón, España]
+
+/* SITIO */
+    Última actualización: {{23/03/2025}}
+    Lenguajes de frontend: React, Typescript, tailwind, Vite, HTML5, CSS3
+    Lenguajes de backend: Flask, python
+    APIs: Spotify, LastFM
+    Estándares: W3C, ECMA
+    Software: GCP, firebase
+    IDE: Visual Studio Code
+
+/* NOTA */
+    Este archivo humans.txt sigue la iniciativa para 
+    reconocer públicamente a los creadores de sitios web.
+    Más información: http://humanstxt.org

@@ -1,13 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34">
-    <g transform="translate(17 17)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 61">
+  <g transform="rotate(-3 20 40)">
+    <rect x="5" y="2" width="36" height="56" rx="3" ry="3" fill="#eeeeee" stroke="black" stroke-width="3"/>
+ 
+    <g transform="translate(23 20)">
       <circle r="16" fill="black" stroke="white" stroke-width="1"/>
-      
       <circle r="12" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="20,20"/>
       <circle r="10" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="15,15"/>
       <circle r="8" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="12,12"/>
       <circle r="6" fill="none" stroke="white" stroke-width="0.5" stroke-dasharray="10,10"/>
-
       <circle r="2" fill="none" stroke="white" stroke-width="5"/>
       <circle r="1" fill="black"/>
     </g>
+    <text x="7" y="50" font-size="15" font-weight="bold" font-family="sans-serif" fill="black">card</text>
+  </g>
 </svg>

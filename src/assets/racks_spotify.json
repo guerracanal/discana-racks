@@ -7,103 +7,103 @@
     },
     {
         "title": "De tus escuchas recientes",
-        "endpoint": "recommended/recent",
+        "endpoint": "albums/recent",
         "description": "Lo último de tus artistas favoritos",
         "order": 10
     },
     {
         "title": "Lo último de tus artistas favoritos",
-        "endpoint": "recommended/history",
+        "endpoint": "albums/history",
         "description": "Lo último de tus artistas favoritos",
         "order": 20
     },
     {
         "title": "Pitchfork New Music",
-        "endpoint": "recommended/pitchfork_new",
+        "endpoint": "albums/pitchfork_new",
         "description": "Recomendaciones de Rocks",
         "order": 30
     },
     {
         "title": "NPR New Music",
-        "endpoint": "recommended/5X8lN5fZSrLnXzFtDEUwb9",
+        "endpoint": "albums/5X8lN5fZSrLnXzFtDEUwb9",
         "description": "NPR New Music",
         "order": 31
     },
     {
         "title": "Top Hits",
-        "endpoint": "recommended/top_hits",
+        "endpoint": "albums/top_hits",
         "description": "Top Hits",
         "order": 33
     },
     {
         "title": "New Rock, Metal & Punk",
-        "endpoint": "recommended/0I3XqEJKPLl2NovgQnLKOV",
+        "endpoint": "albums/0I3XqEJKPLl2NovgQnLKOV",
         "description": "New Rock, Metal & Punk",
         "order": 35
     },
     {
         "title": "Novedades Indie",
-        "endpoint": "recommended/2uOpKxcmVwIEfZ8welQSzq",
+        "endpoint": "albums/2uOpKxcmVwIEfZ8welQSzq",
         "description": "JC Indie New Music",
         "order": 37
     },
     {
         "title": "Novedades semanales",
-        "endpoint": "recommended/1Y5VQwD7a0u6FxA9Yk7nPu",
+        "endpoint": "albums/1Y5VQwD7a0u6FxA9Yk7nPu",
         "description": "JC Week New Music",
         "order": 38
     },
     {
         "title": "Novedades hits",
-        "endpoint": "recommended/6snL5r74SvjsTR38XAcN3F",
+        "endpoint": "albums/6snL5r74SvjsTR38XAcN3F",
         "description": "JC 100 Hits",
         "order": 39
     },
     {
         "title": "Novedaes música asturiana",
-        "endpoint": "recommended/asturiana",
+        "endpoint": "albums/asturiana",
         "description": "Nueva música asturiana",
         "order": 49
     },
     {
         "title": "Pitchfork Selects",
-        "endpoint": "recommended/pitchfork_selects",
+        "endpoint": "albums/pitchfork_selects",
         "description": "Pitchfork Selects",
         "order": 34
     },
     {
         "title": "Sonemic Selects",
-        "endpoint": "recommended/sonemic_selects",
+        "endpoint": "albums/sonemic_selects",
         "description": "Sonemic Selects",
         "order": 44
     },
     {
         "title": "Top new",
-        "endpoint": "recommended/6jdTMw4K4W55JdRzzrxgei",
+        "endpoint": "albums/6jdTMw4K4W55JdRzzrxgei",
         "description": "Redlist Apollo",
         "order": 100
     },
     {
         "title": "Top España",
-        "endpoint": "recommended/6X9EhIIWmyz0M9YOnAW1WL",
+        "endpoint": "albums/6X9EhIIWmyz0M9YOnAW1WL",
         "description": "Diskover Co",
         "order": 100
     },
     {
         "title": "Top Global",
-        "endpoint": "recommended/5dnSFdz51E2Qouk7iFnwbl",
+        "endpoint": "albums/5dnSFdz51E2Qouk7iFnwbl",
         "description": "Top Global Music",
         "order": 101
     },
     {
         "title": "Novedades Viernes",
-        "endpoint": "recommended/7pwumHYto2P9yLK075xsqj",
+        "endpoint": "albums/7pwumHYto2P9yLK075xsqj",
         "description": "New Friday Releases",
         "order": 102
     },
     {
         "title": "Top Japan",
-        "endpoint": "recommended/4lhQlU8S5Z3uXURe04QRhE",
+        "endpoint": "albums/4lhQlU8S5Z3uXURe04QRhE",
         "description": "Topsify Japan Playlist",
         "order": 103
     }

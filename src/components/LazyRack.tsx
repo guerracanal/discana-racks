@@ -1,5 +1,6 @@
 import { useInView } from "react-intersection-observer";
 import RackCarousel from "./RackCarousel";
+import LoadingPopup from "./LoadingPopup"; // Import LoadingPopup
 
 interface LazyRackProps {
   albums_collection: string;
@@ -20,9 +21,11 @@ const LazyRack: React.FC<LazyRackProps> = ({albums_collection, rack, options, fe
     triggerOnce: false,
     rootMargin: "200px",
   });
+  const { loading, error } = fetchAlbums(); // Call fetchAlbums immediately
 
   return (
-    <div ref={ref} className="min-h-100">
+    <div ref={ref} className="lazy-rack min-h-100">
+      <LoadingPopup isLoading={loading} /> {/* Show LoadingPopup while loading */}
       {inView && (
         <RackCarousel
           title={rack.title}
@@ -33,6 +36,7 @@ const LazyRack: React.FC<LazyRackProps> = ({albums_collection, rack, options, fe
           albums_collection={albums_collection}
            />
       )}
+      {error && <p>Error loading {rack.title}: {error}</p>} {/* Display error message */}
     </div>
   );
 };
