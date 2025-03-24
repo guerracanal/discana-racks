@@ -54,7 +54,7 @@ const LastFMButton: React.FC = () => {
       <LoadingPopup isLoading={isLoading} /> {/* Conditionally render LoadingPopup */}
       <div
         onClick={handleButtonClick}
-        className="cursor-pointer flex items-center space-x-2 hover:text-red-600 transition-colors"
+        className="cursor-pointer flex items-center space-x-2 text-gray-400 hover:text-red-600 transition-colors"
       >
         <FaLastfm size={20} />
         <span>{userData?.lastfm_user || 'Last.fm'}</span>

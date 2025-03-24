@@ -2,7 +2,6 @@ import { useState, useEffect, forwardRef, JSX } from "react";
 import cdIcon from "../assets/icons/cd.png";
 import vinylIcon from "../assets/icons/vinyl.png";
 import cardIcon from "../assets/card.svg";
-
 import Marquee from "react-fast-marquee";
 import { Album, AlbumCardProps } from '../types/album';
 import { SiDiscogs } from "react-icons/si";
@@ -57,7 +56,7 @@ const getFormatIcons = (album: Album): JSX.Element[] => {
   if (album.format && album.format.length > 0) {
     if (album.format.includes("CD")) icons.push(<img key="cd" src={cdIcon} alt="CD" loading="lazy" className="w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />);
     if (album.format.includes("vinilo")) icons.push(<img key="vinyl" src={vinylIcon} alt="Vinilo" loading="lazy" className="w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" />);
-    if (album.format.includes("card")) icons.push(<span className="text-black"><img src={cardIcon} className="w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" alt="Card"/></span>);
+    if (album.format.includes("card")) icons.push(<span className="text-black"><img src={cardIcon} className="w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" alt="Card" /></span>);
   }
   if (album.compilations && album.compilations.length > 0) {
     if (album.compilations.includes("whistlist")) icons.push(<span className="text-black"><RiHeartAdd2Line key="whistlist" className="w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" /></span>);
@@ -71,6 +70,10 @@ const getFormatIcons = (album: Album): JSX.Element[] => {
   }
 
   return icons;
+};
+
+const renderInfo = (album: Album) => {
+  return `${album.date_release || album.listens + ' veces'} - ${album.duration || ''}' (${album.tracks || ''} tracks)`;
 };
 
 
@@ -143,7 +146,8 @@ const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCa
           )}
 
           <div className="text-sm md:text-base lg:text-lg"> {/* Simplified text sizes */}
-            <p className="info">{album.date_release || album.listens + ' escuchas'} - {album.duration || "?"} min ({album.tracks || "?"} tracks)</p>
+            <p className="info">{renderInfo(album)}</p>
+
             <p className="genre font-bold">{album.genre?.join(', ') || ""}</p>
             {isSubgenresLong ? (
               <Marquee speed={10}> {/* Hidden on screens smaller than sm */}
