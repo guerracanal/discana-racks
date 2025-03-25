@@ -1,116 +1,211 @@
 :root {
+  /* Dimensiones */
+  --card-height-desktop: 420px;
+  --card-height-tablet: 90rem;
+  --card-height-mobile: 23rem;
+
   /* Colores base */
-  --color-card: #fffcf5; /* Color base de la carta */
+  --color-card: #fffcf5;
   --color-title: #ee514b;
   --color-artist: #7e696d;
   --color-info: #7e696d;
   --color-genre: #ee514b;
   --color-subgenres: #7e696d;
   --color-mood: #7e696d;
-  --border-primary: rgba(0, 0, 0, 0.2); /* Borde más marcado */
-  --accent-color: #f3e9d2; /* Color de acento dorado */
+  
+  /* Bordes y acentos */
+  --border-primary: #e0d6c3;
+  --border-hover: rgba(243, 233, 210, 0.6);
+  --accent-color: #f3e9d2; /* Añadido */
   
   /* Opacidades */
-  --glow-opacity: 0.3; /* Opacidad del resplandor */
-  --shine-opacity: 0.8; /* Opacidad del brillo */
+  --glow-opacity: 0.4; /* Corregido */
+  --shine-opacity: 0.5; /* Ajustado */
   
-  /* Duraciones */
-  --light-effect-duration: 0.3s; /* Duración del efecto de luz */
-  --hover-duration: 0.3s; /* Duración del efecto hover */
+  /* Sombras */
+  --box-shadow-normal: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
   
-  /* Sombra y reflejos */
-  --box-shadow-normal: 10px 10px 20px rgba(0, 0, 0, 0.1);
-  --box-shadow-hover: 10px 10px 30px rgba(0, 0, 0, 0.2), inset 0 3px 8px rgba(192, 168, 120, 0.1);
-  --border-hover: rgba(243, 233, 210, 0.6); /* Color del borde en hover */
+  /* Transiciones */
+  --hover-duration: 0.2s;
 }
 
 
+/* https://www.frontend.fyi/tutorials/css-3d-perspective-animations */
+
 .card {
   background: var(--color-card);
-  border-radius: 1rem; /* Redondeo de bordes */
+  border-radius: 1rem;
   border: 3px solid var(--border-primary);
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: var(--card-height-desktop);
   gap: 0.2rem;
   flex: 1;
   justify-content: space-between;
   overflow: hidden;
-  transition: all var(--hover-duration) ease; /* Transición suave para hover */
+  transition: all var(--hover-duration) ease;
+  box-shadow: var(--box-shadow-normal);
 
-  /* Efecto de textura para simular material */
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(15deg, rgba(255, 255, 255, 0.8) 20%, rgba(255, 250, 240, 0.5) 60%, transparent 100%);
-  background-size: 10px 10px;
+  /* Efecto foil */
+  background-image: 
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.3) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.3) 75%,
+      transparent 75%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 60%
+    );
+  background-size: 10px 10px, 100% 100%;
 
-  /* Sombra para dar relieve */
-  box-shadow: var(--box-shadow-normal); 
-
-  /* Reflejo suave en diagonal */
-  &::after {
+  /* Textura de ruido */
+  &::before {
     content: "";
     position: absolute;
-    inset: 3px;
-    border: 1px solid rgba(243, 233, 210, 0.3);
-    border-radius: 0.55rem;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    z-index: 1;
+    mix-blend-mode: multiply;
     pointer-events: none;
-    transition: inherit;
   }
 
-  /* Efecto de resplandor base */
-  &::before {
+  /* Reflejo estático en ::after (sin animación) */
+  &::after {
     content: "";
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, var(--glow-opacity)) 50%, rgba(255, 255, 255, 0) 55%);
-    opacity: var(--shine-opacity);
+    background: linear-gradient(
+      80deg, 
+      rgba(255, 255, 255, 0) 45%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 55%
+    );
+    opacity: 0.4;
+    z-index: 4;
+    transform: scale(0.9); /* Reflejo estático más pequeño */
+    filter: blur(3px); /* Difuminado sutil para reflejo */
+  }
+
+  .inner-border {
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(243, 233, 210, 0.3);
+    border-radius: 0.55rem;
     pointer-events: none;
-  }
-}
-
-/* Estados de hover */
-.card:hover {
-  border-color: var(--accent-color);
-  box-shadow: var(--box-shadow-hover); /* Efecto más pronunciado en hover */
-
-  &::after {
-    border-color: var(--border-hover);
-    border-width: 1.5px;
-    inset: 2px;
+    transition: inherit;
+    z-index: 3;
   }
 
-  &::before {
-    opacity: var(--shine-opacity);
-    animation: card-glow 2s infinite, shine 3s infinite;
+  /* Hover */
+  &:hover {
+    border-color: var(--accent-color);
+    box-shadow: var(--box-shadow-hover);
+  
+    .inner-border {
+      border-color: var(--border-hover);
+      border-width: 1.5px;
+      inset: 2px;
+    }
+  
+    /* Brillo dinámico solo en hover */
+    &::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        80deg, 
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, var(--glow-opacity)) 50%,
+        rgba(255, 255, 255, 0) 55%
+      );
+      opacity: var(--shine-opacity);
+      animation: shine 4s infinite linear;  /* Aquí ajustas el tiempo de la animación */
+      z-index: 4;
+      transform: scale(0.9); 
+      filter: blur(3px); 
+    }
   }
-}
-
-/* Animaciones */
-@keyframes card-glow {
-  0% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0.6;
-  }
+  
 }
 
 @keyframes shine {
-  0% {
-    transform: translate(0, 0) rotate(45deg);
-  }
-  100% {
-    transform: translate(100%, 100%) rotate(45deg);
-  }
+  0% { transform: translate(-50%, -50%) rotate(45deg); }
+  100% { transform: translate(50%, 50%) rotate(45deg); }
+}
+
+/* Variantes de color */
+.card-blue {
+  --color-card: #f0f8ff;
+  --border-primary: #c0d8e8;
+  
+  background-image: 
+    linear-gradient(135deg,
+      rgba(225, 240, 255, 0.4) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(225, 240, 255, 0.4) 50%,
+      rgba(225, 240, 255, 0.4) 75%,
+      transparent 75%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(200, 225, 255, 0.5) 0%,
+      transparent 60%
+    );
+}
+.card-green {
+  --color-card: #f0fff0;
+  --border-primary: #c0e8c0;
+  
+  background-image: 
+    linear-gradient(135deg,
+      rgba(225, 255, 225, 0.4) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(225, 255, 225, 0.4) 50%,
+      rgba(225, 255, 225, 0.4) 75%,
+      transparent 75%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(200, 255, 200, 0.5) 0%,
+      transparent 60%
+    );
+}
+
+.card-purple {
+  --color-card: #f8f0ff;
+  --border-primary: #d8c0e8;
+  
+  background-image: 
+    linear-gradient(135deg,
+      rgba(240, 225, 255, 0.4) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(240, 225, 255, 0.4) 50%,
+      rgba(240, 225, 255, 0.4) 75%,
+      transparent 75%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(225, 200, 255, 0.5) 0%,
+      transparent 60%
+    );
 }
 
 /* Colores de texto */
@@ -149,4 +244,19 @@
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+}
+
+/* Media Queries para ajustar la altura de la carta */
+@media (max-width: 768px) {
+  /* Tablet y móviles */
+  .card {
+    min-height: var(--card-height-tablet);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Móviles */
+  .card {
+    min-height: var(--card-height-mobile);
+  }
 }

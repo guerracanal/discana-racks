@@ -1,5 +1,8 @@
 :root {
   --header-height: 100px; /* Height of the <Header /> */
+  --card-height-desktop: 370px; /* Altura base para pantallas grandes */
+  --card-height-tablet: 70rem; /* Altura para tablets */
+  --card-height-mobile: 23rem; /* Altura para móviles */
 }
 
 .albums-grid {
@@ -7,30 +10,25 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
   padding: 16px;
-  max-width: 95%;
+  max-width: 100%;
   margin: 2rem auto;
 }
 
 .albums-grid__item {
-  height: 37rem;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.8s ease;
   position: relative;
+  justify-content: space-between; /* Distribuir espacio verticalmente */
+  height: var(--card-height-desktop);
 }
 
 .albums-grid__item:hover {
-  transform: translateY(-5px);
-}
+  /*transform: translateY(-5px);*/
 
-.albums-grid__item .album-card .cover {
-  width: 100%;
-  height: auto;
-  max-width: 130px;
-  max-height: 130px;
-  margin: 0 auto;
+
 }
 
 .popup-container {
@@ -63,11 +61,6 @@
     height: 25rem;
   }
 
-  .albums-grid__item .album-card .cover {
-    max-width: 100px;
-    max-height: 100px;
-  }
-
   .popup-container {
     width: 90%;
     height: 85%;
@@ -85,13 +78,6 @@
 
   .albums-grid__item {
     height: 23rem;
-  }
-
-  .albums-grid__item .album-card .cover {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    display: block;
   }
 
   .popup-container {

@@ -1,6 +1,6 @@
   .embla {
     position: relative; /* Agregado para que los botones se posicionen de forma relativa a cada carrusel */
-    max-width: 90%;
+    max-width: 100%;
     margin: 3rem auto;
     --slide-spacing: 1.5rem;
     /*--slide-height: 100%;
@@ -17,7 +17,10 @@
 }
 
   .embla__viewport {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible; /* Permite que el contenido sobresalga */
+    padding-top: 10px; /* Espacio para que se vea lo que sobresale por arriba */
+
     position: relative; /* Contenedor de referencia para posicionar los botones */
     min-height: 0; /* Permitir que se reduzca */
   }
@@ -50,9 +53,8 @@
     */
     display: flex;
     flex-direction: column; /* Stack items vertically */
-    height: var(--slide-height);
     justify-content: space-between; /* Distribuir espacio verticalmente */
-    height: 100% !important; /* ← CLAVE */
+    height: var(--slide-height) !important;
 
   }
 
@@ -183,7 +185,7 @@
     }
 
     .embla__slide {
-      flex: 0 0 50%;
+      flex: 0 0 25%;
     }
   }
 

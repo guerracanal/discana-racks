@@ -53,8 +53,8 @@ const HomePage: FC<HomePagePropsExtended> = ({ useFetchAlbumsHook, useFetchRacks
     <div className="min-h-screen bg-gray-900">
       <Header />
       {/* Espacio para evitar que el contenido quede tapado por el header */}
-      <div className="pt-16">
-        <main className="p-4">
+      <div className="pt-2">
+        <main className="px-10">
           {racks.map((rack: Rack) => (
             <LazyRack
               key={rack.title}
