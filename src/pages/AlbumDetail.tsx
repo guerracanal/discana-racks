@@ -69,7 +69,7 @@ const AlbumDetail: React.FC = () => {
 
   if (loading) return <LoadingPopup isLoading={true} />;
 
-  if (error || (album && "error" in album)) {
+  if (album && Object.keys(album).length === 1 && "error" in album) {
     return (
       <>
         <Header />
@@ -88,9 +88,28 @@ const AlbumDetail: React.FC = () => {
     );
   }
 
+  // Manejar otros errores (por ejemplo, errores de red).
+  if (error) {
+    return (
+      <>
+        <Header />
+        <div className="flex flex-col items-center justify-center h-screen text-gray-400">
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 focus:outline-none mb-6"
+            aria-label="Volver"
+          >
+            <FaArrowLeft size={20} />
+          </button>
+          <FaExclamationTriangle className="text-6xl mb-4" />
+          <p className="text-xl">Error cargando el álbum: {error}</p>
+        </div>
+      </>
+    );
+  }
+
   if (!album) return <p>Álbum no encontrado.</p>;
 
-  // Datos secundarios como fallback
   const fallbackImage =
     album.image ||
     album.spotify?.image || 
