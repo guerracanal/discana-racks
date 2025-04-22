@@ -5,6 +5,7 @@ import { useFetchAlbums } from "./hooks/useFetchAlbums";
 import { useFetchRacks } from "./hooks/useFetchRacks";
 import AlbumsPage from "./pages/AlbumsPage";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import AlbumDetail from "./pages/AlbumDetail";
 
 const App: React.FC = () => {
   return (
@@ -91,6 +92,8 @@ const App: React.FC = () => {
               />
             }
           />
+          <Route path="/album/:artistSlug/:albumSlug" element={<AlbumDetail />} />
+          <Route path="/album/detail" element={<AlbumDetail />} />
         </Routes>
       </Router>
       <ScrollToTopButton />

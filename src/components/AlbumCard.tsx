@@ -9,9 +9,7 @@ import { FaLastfm, FaSpotify, FaCalendarAlt, FaClock, FaMusic } from "react-icon
 import { RiHeartAdd2Line } from "react-icons/ri";
 import { FaHeadphones } from "react-icons/fa";
 
-// Helper function to get the flag emoji
 const getFlagEmoji = (countryCode: string) => {
-  // Special handling for Scotland
   if (countryCode.toUpperCase() === "GB-SCT") {
     return "\u{1F3F4}\u{E0067}\u{E0062}\u{E0073}\u{E0063}\u{E0074}\u{E007F}";
   }
@@ -20,35 +18,17 @@ const getFlagEmoji = (countryCode: string) => {
     .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
 };
 
-// Helper function to determine the link to use
 const getLink = (album: Album) => {
-  if (album.spotify_link) return album.spotify_link;
-  if (album.discogs_link) return album.discogs_link;
-  if (album.lastfm_link) return album.lastfm_link;
-  return "#";
+  const artistSlug = encodeURIComponent(album.artist?.toLowerCase().replace(/\s+/g, "-") || "unknown-artist");
+  const albumSlug = encodeURIComponent(album.title?.toLowerCase().replace(/\s+/g, "-") || "unknown-album");
+
+  return `/album/${artistSlug}/${albumSlug}`;
 };
 
-// Helper function to determine the content for the mood section
-const getTopContent = (album: Album, isTopLong: boolean) => {
-  if (album.mood && album.mood.length > 0) {
-    const moodString = album.mood.join(', ');
-    return isTopLong ? (
-      <Marquee speed={30}>
-        <p className="text-center">&emsp;{moodString}</p>
-      </Marquee>
-    ) : (
-      <p className="text-center">{moodString}</p>
-    );
-  }
-};
-
-// Función de validación mejorada
 const isValidListen = (listens: unknown): listens is number => {
-  // Verificar tipo number explícitamente y valores válidos
   return typeof listens === 'number' && listens >= 0;
 };
 
-// Función de color actualizada
 const getListenColor = (listens: number) => {
   if (listens === 0) return 'text-red-500';
   if (listens <= 10) return 'text-orange-500';
@@ -58,18 +38,19 @@ const getListenColor = (listens: number) => {
   if (listens <= 50) return 'text-indigo-500';
   return 'text-purple-500';
 };
+
 const getFormatIcons = (album: Album): JSX.Element[] => {
   const icons: JSX.Element[] = [];
   const iconSize = "w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12";
 
-  // Iconos de formato
-  const formats = album.format || [];  // Aseguramos que album.format sea un array aunque esté vacío
+  const formats = album.format || [];
 
   if (formats.length > 0) {
-    const formatIcons: { format: string, icon: string }[] = [
+    const formatIcons = [
       { format: "CD", icon: cdIcon },
       { format: "vinilo", icon: vinylIcon },
-      { format: "card", icon: cardIcon }
+      { format: "Vinyl", icon: vinylIcon },
+      { format: "card", icon: cardIcon },
     ];
 
     formatIcons.forEach(({ format, icon }) => {
@@ -81,7 +62,6 @@ const getFormatIcons = (album: Album): JSX.Element[] => {
     });
   }
 
-  // Icono de wishlist
   if (album.compilations?.includes("whistlist")) {
     icons.push(
       <RiHeartAdd2Line
@@ -91,7 +71,6 @@ const getFormatIcons = (album: Album): JSX.Element[] => {
     );
   }
 
-  // Contador de escuchas
   if (album.listens !== undefined && isValidListen(album.listens)) {
     const colorClass = getListenColor(album.listens);
 
@@ -100,7 +79,6 @@ const getFormatIcons = (album: Album): JSX.Element[] => {
 
   }
 
-  // Iconos de servicios
   const serviceIcons = [
     { condition: album.discogs_link, Icon: SiDiscogs, key: "discogs", color: "text-black" },
     { condition: album.lastfm_link, Icon: FaLastfm, key: "lastfm", color: "text-red-600" },
@@ -125,7 +103,6 @@ const getFormatIcons = (album: Album): JSX.Element[] => {
 const renderInfo = (album: Album) => {
   const parts: JSX.Element[] = [];
 
-  // Parte 1: Fecha de lanzamiento
   if (album.date_release) {
     parts.push(
       <span key={`date-${album._id}`} className="inline-flex items-center mr-1">
@@ -135,7 +112,6 @@ const renderInfo = (album: Album) => {
     );
   }
 
-  // Parte 2: Duración
   if (album.duration) {
     parts.push(
       <span key={`duration-${album._id}`} className="inline-flex items-center mr-1">
@@ -145,7 +121,6 @@ const renderInfo = (album: Album) => {
     );
   }
 
-  // Parte 3: Pistas
   if (album.tracks) {
     parts.push(
       <span key={`tracks-${album._id}`} className="inline-flex items-center mr-1">
@@ -155,7 +130,6 @@ const renderInfo = (album: Album) => {
     );
   }
 
-  // Parte 4: Scrobblings
   if (album.playcount) {
     parts.push(
       <span key={`playcount-${album._id}`} className="inline-flex items-center mr-1">
@@ -176,34 +150,26 @@ const renderInfo = (album: Album) => {
 
 const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCardProps, ref) => {
 
-  // Constants for maximum lengths
   const MAX_TITLE_LENGTH: number = 18;
   const MAX_ARTIST_LENGTH: number = 15;
-  const MAX_MOOD_LENGTH: number = 20;
   const MAX_SUBGENRES_LENGTH: number = 20;
 
-  // State variables
   const [isTitleLong, setIsTitleLong] = useState<boolean>(false);
   const [isArtistLong, setIsArtistLong] = useState<boolean>(false);
-  const [isTopLong, setisTopLong] = useState<boolean>(false);
   const [isSubgenresLong, setIsSubgenresLong] = useState<boolean>(false);
   const [formatIcons, setFormatIcons] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    // Calculate long strings
-    const moodString: string = album.mood?.join(", ") || "";
     const subgenresString: string = album.subgenres?.join(", ") || "";
 
     setIsTitleLong((album.title || "").length > MAX_TITLE_LENGTH);
     setIsArtistLong((album.artist || "").length > MAX_ARTIST_LENGTH);
-    setisTopLong(moodString.length > MAX_MOOD_LENGTH);
     setIsSubgenresLong(subgenresString.length > MAX_SUBGENRES_LENGTH);
-    // Set format icons
     setFormatIcons(getFormatIcons(album));
   }, [album]);
 
   const link = getLink(album);
-  const openInNewTab = link !== "#";
+  const openInNewTab = false; // Abrir en la misma pestaña
 
   return (
     <a
@@ -226,15 +192,10 @@ const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCa
         key={`card-${album._id}`}
       >
         <div className="inner-border"></div>
-        <div className="card-content relative z-4"> {/* Añadido relative y z-index */}
+        <div className="card-content relative z-4">
 
-          <div className="top text-sm md:text-base lg:text-lg">
-            <div className="mood w-full flex items-center justify-center">
-              {getTopContent(album, isTopLong)}
-            </div>
-          </div>
           <img 
-            className="cover w-full h-auto object-cover rounded-lg mx-auto" /* Corregido aspect ratio */
+            className="cover w-full h-auto object-cover rounded-lg mx-auto"
             src={album.image || ""}
             loading="lazy"
             alt={album.title || "Unknown Album"}
@@ -263,16 +224,16 @@ const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCa
               </h4>
             )}
 
-            <div className="text-sm md:text-base lg:text-lg"> {/* Simplified text sizes */}
+            <div className="text-sm md:text-base lg:text-lg">
               {renderInfo(album)}
 
               <p className="genre font-bold">{album.genre?.join(', ') || ""}</p>
               {isSubgenresLong ? (
-                <Marquee speed={30}> {/* Hidden on screens smaller than sm */}
+                <Marquee speed={30}>
                   &emsp;<p className="subgenres">{album.subgenres?.join(', ') || ""}</p>
                 </Marquee>
               ) : (
-                <p className="subgenres"> {/* Hidden on screens smaller than sm */}
+                <p className="subgenres">
                   {album.subgenres?.join(', ') || ""}
                 </p>
               )}
@@ -280,7 +241,6 @@ const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCa
 
           </div>
 
-          {/* Flag and format icons */}
           <div className="bottom flex items-center justify-between">
             <span className="text-xl md:text-2xl lg:text-3xl">
               {getFlagEmoji(album.country || "")}

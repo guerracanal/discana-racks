@@ -9,8 +9,8 @@ const DiscogsButton: React.FC = () => {
   const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
 
   const handleLogin = () => {
-    console.log(`${backendUrl}/api/v2/discogs/auth`);
-    //window.location.href = `${backendUrl}/api/v2/discogs/auth`;
+    console.log(`${backendUrl}/api/v2/discogs/login`);
+    window.location.href = `${backendUrl}/api/v2/discogs/login`;
   };
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const DiscogsButton: React.FC = () => {
         const userData = { discogs_id, discogs_user };
         setUserData(userData);
         sessionStorage.setItem('discogsUserData', JSON.stringify(userData));
+        sessionStorage.setItem('user_id', discogs_user);
         
         // Limpiar parámetros de la URL
         navigate(window.location.pathname, { replace: true });
@@ -42,14 +43,14 @@ const DiscogsButton: React.FC = () => {
     if (!userData) {
       handleLogin();
     } else {
-      //navigate('/discogs');
+      navigate('/discogs');
     }
   };
 
   return (
     <div
       onClick={handleButtonClick}
-      className="cursor-not-allowed flex items-center space-x-2 hover:text-black text-gray-400 transition-colors"
+      className="cursor-pointer flex items-center space-x-2 hover:text-black text-gray-400 transition-colors"
     >
       <SiDiscogs size={20} />
       <span>{userData?.discogs_user || 'Discogs'}</span>

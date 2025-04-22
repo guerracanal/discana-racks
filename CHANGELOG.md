@@ -5,11 +5,10 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/).
 
 ## [Versión sin publicar] (En desarrollo)
 ### Added
-- Sección Discogs
-- Pagina detalle de album
+-
 
 ### Changed
-- 
+- Efecto carta perspectiva 3D
 
 ### Deprecated
 - Sección Pendientes
@@ -25,6 +24,25 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/).
 - 
 
 ---
+
+
+## [1.0.2] - 22/04/2025
+
+### Added
+- Sección Discogs
+- Pagina detalle de album
+
+### Fixed
+- Refactorizaciones
+
+## [1.0.1] - 24/03/2025
+
+### Fixed
+- Aspecto de la carta
+
+---
+
+
 
 ## [1.0.0] - 23/03/2025
 ### Added

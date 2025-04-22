@@ -42,6 +42,20 @@
     "description": "BSO",
     "order": 15
   },
+
+  {
+    "title": "POP",
+    "endpoint": "compilations/pop",
+    "description": "POP",
+    "order": 16
+  },
+  {
+    "title": "Shoegaze & Dream Pop",
+    "endpoint": "genres/Shoegaze/Dream Pop",
+    "description": "Música con capas de sonido y guitarras etéreas.",
+    "order": 20
+  },
+
   {
     "title": "Cumplen 20 años",
     "endpoint": "year/2005",
@@ -99,7 +113,7 @@
   {
     "title": "20s",
     "endpoint": "decade/2020",
-    "description": "Decada dde 2020",
+    "description": "Decada de 2020",
     "order": 56
   }
 ]
