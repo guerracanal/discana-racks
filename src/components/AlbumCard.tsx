@@ -19,8 +19,25 @@ const getFlagEmoji = (countryCode: string) => {
 };
 
 const getLink = (album: Album) => {
-  const artistSlug = encodeURIComponent(album.artist?.toLowerCase().replace(/\s+/g, "-") || "unknown-artist");
-  const albumSlug = encodeURIComponent(album.title?.toLowerCase().replace(/\s+/g, "-") || "unknown-album");
+  const artistSlug = encodeURIComponent(
+    (typeof album.artist === "string" ? album.artist.toLowerCase() : "unknown-artist").replace(/\s+/g, "-")
+  );
+  const albumSlug = encodeURIComponent(
+    (typeof album.title === "string" ? album.title.toLowerCase() : "unknown-album").replace(/\s+/g, "-")
+  );
+
+  if (album._id) {
+    return `/album/${artistSlug}/${albumSlug}/db/${album._id}`;
+  }
+  if (album.spotify_id) {
+    return `/album/${artistSlug}/${albumSlug}/spotify/${album.spotify_id}`;
+  }
+  if (album.mbid) {
+    return `/album/${artistSlug}/${albumSlug}/mbid/${album.mbid}`;
+  }
+  if (album.discogs_id) {
+    return `/album/${artistSlug}/${albumSlug}/discogs/${album.discogs_id}`;
+  }
 
   return `/album/${artistSlug}/${albumSlug}`;
 };
@@ -181,7 +198,7 @@ const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCa
     >
       <div
         ref={ref}
-        className={`card ${album.tracks === 1
+        className={`card w-full max-w-[500px] mx-auto ${album.tracks === 1
             ? 'card-blue'
             : (album.duration ?? 0) < 20
               ? 'card-green'

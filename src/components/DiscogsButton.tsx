@@ -25,7 +25,6 @@ const DiscogsButton: React.FC = () => {
         sessionStorage.setItem('discogsUserData', JSON.stringify(userData));
         sessionStorage.setItem('user_id', discogs_user);
         
-        // Limpiar parámetros de la URL
         navigate(window.location.pathname, { replace: true });
       }
     };
