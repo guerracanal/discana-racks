@@ -17,8 +17,14 @@ const getFlagEmoji = (countryCode: string) => {
     .toUpperCase()
     .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
 };
+const getIdString = (id: any) => {
+  if (!id) return "";
+  if (typeof id === "string" || typeof id === "number") return String(id);
+  if (typeof id === "object" && id.$oid) return id.$oid;
+  return "";
+};
 
-const getLink = (album: Album) => {
+const getLink = (album: Album, albums_collection: string) => {
   const artistSlug = encodeURIComponent(
     (typeof album.artist === "string" ? album.artist.toLowerCase() : "unknown-artist").replace(/\s+/g, "-")
   );
@@ -26,20 +32,25 @@ const getLink = (album: Album) => {
     (typeof album.title === "string" ? album.title.toLowerCase() : "unknown-album").replace(/\s+/g, "-")
   );
 
-  if (album._id) {
-    return `/album/${artistSlug}/${albumSlug}/db/${album._id}`;
+  const _id = getIdString(album._id);
+  const spotify_id = getIdString(album.spotify_id);
+  const mbid = getIdString(album.mbid);
+  const discogs_id = getIdString(album.discogs_id);
+
+  if (_id) {
+    return `/${albums_collection}/album/${artistSlug}/${albumSlug}/db/${_id}`;
   }
-  if (album.spotify_id) {
-    return `/album/${artistSlug}/${albumSlug}/spotify/${album.spotify_id}`;
+  if (spotify_id) {
+    return `/${albums_collection}/album/${artistSlug}/${albumSlug}/spotify/${spotify_id}`;
   }
-  if (album.mbid) {
-    return `/album/${artistSlug}/${albumSlug}/mbid/${album.mbid}`;
+  if (mbid) {
+    return `/${albums_collection}/album/${artistSlug}/${albumSlug}/mbid/${mbid}`;
   }
-  if (album.discogs_id) {
-    return `/album/${artistSlug}/${albumSlug}/discogs/${album.discogs_id}`;
+  if (discogs_id) {
+    return `/${albums_collection}/album/${artistSlug}/${albumSlug}/discogs/${discogs_id}`;
   }
 
-  return `/album/${artistSlug}/${albumSlug}`;
+  return `/${albums_collection}/album/${artistSlug}/${albumSlug}`;
 };
 
 const isValidListen = (listens: unknown): listens is number => {
@@ -165,7 +176,7 @@ const renderInfo = (album: Album) => {
 
 
 
-const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCardProps, ref) => {
+const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album, albums_collection }, ref) => {
 
   const MAX_TITLE_LENGTH: number = 18;
   const MAX_ARTIST_LENGTH: number = 15;
@@ -185,7 +196,7 @@ const AlbumCard = forwardRef<HTMLDivElement, AlbumCardProps>(({ album }: AlbumCa
     setFormatIcons(getFormatIcons(album));
   }, [album]);
 
-  const link = getLink(album);
+  const link = getLink(album, albums_collection);
   const openInNewTab = false; // Abrir en la misma pestaña
 
   return (

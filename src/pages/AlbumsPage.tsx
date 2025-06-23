@@ -95,7 +95,7 @@ const AlbumsPage: React.FC = () => {
               key={album._id}
               ref={albums.length === index + 1 ? lastAlbumRef : null}
             >
-              <AlbumCard album={album} filter={filterType} />
+              <AlbumCard album={album} filter={filterType} albums_collection={albums_collection}/>
             </div>
           ))}
         </section>

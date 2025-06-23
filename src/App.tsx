@@ -92,12 +92,13 @@ const App: React.FC = () => {
               />
             }
           />
-          <Route path="/album/:artistSlug?/:albumSlug?/db/:id" element={<AlbumDetail />} />
-          <Route path="/album/:artistSlug?/:albumSlug?/mbid/:mbid" element={<AlbumDetail />} />
-          <Route path="/album/:artistSlug?/:albumSlug?/spotify/:spotifyId" element={<AlbumDetail />} />
-          <Route path="/album/:artistSlug?/:albumSlug?/discogs/:discogsId" element={<AlbumDetail />} />
-          <Route path="/album/:artistSlug/:albumSlug" element={<AlbumDetail />} />
-          <Route path="/album/detail" element={<AlbumDetail />} />
+          <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/db/:id" element={<AlbumDetail />} />
+          <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/mbid/:mbid" element={<AlbumDetail />} />
+          <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/spotify/:spotifyId" element={<AlbumDetail />} />
+          <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/discogs/:discogsId" element={<AlbumDetail />} />
+          <Route path=":albums_collection/album/:artistSlug/:albumSlug" element={<AlbumDetail />} />
+          <Route path=":albums_collection/album/detail" element={<AlbumDetail />} />
+
         </Routes>
       </Router>
       <ScrollToTopButton />

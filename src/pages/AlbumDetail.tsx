@@ -148,20 +148,22 @@ const renderInfo = (dateRelease: string | undefined, duration: number | undefine
 };
 
 const AlbumDetail: React.FC = () => {
-  const { artistSlug, albumSlug, id, mbid, spotifyId, discogsId } = useParams();
+  const { artistSlug, albumSlug, id, mbid, spotifyId, discogsId, albums_collection } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const artist = artistSlug?.replace(/-/g, " ") || searchParams.get("artist") || undefined;
   const title = albumSlug?.replace(/-/g, " ") || searchParams.get("title") || undefined;
 
-  const albums_collection = searchParams.get("albums_collection") || "albums"; // Default to "albums"
+  const albumsCollection = albums_collection || searchParams.get("albums_collection") || "albums";
+
+  console.log("Albums Collection:", albumsCollection);
 
   // Solo realizar la llamada si al menos uno de los identificadores está definido
   const shouldFetch = artist || title || id || mbid || spotifyId || discogsId;
 
   const { album, loading, error } = useFetchAlbumDetail(
-    albums_collection,
+    albumsCollection,
     artist,
     title,
     id,

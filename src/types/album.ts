@@ -215,4 +215,5 @@ export interface AlbumCardProps {
     album: Album;
     className?: string;
     filter: "all" | "disc" | "spotify";
+    albums_collection: string; 
 }

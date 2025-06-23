@@ -97,7 +97,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           {albums.map((album) => (
             <div className="embla__slide" key={album._id}>
               <div className="embla__slide__card">
-                <AlbumCard album={album} filter={'all'} />
+                <AlbumCard album={album} filter={'all'} albums_collection={albums_collection} />
               </div>
             </div>
           ))}
