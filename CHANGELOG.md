@@ -25,6 +25,12 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.0.3] - 02/08/2025
+
+### Added
+- Album Aleatorio
+- Album Sorpresa
+
 
 ## [1.0.2] - 22/04/2025
 

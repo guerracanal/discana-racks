@@ -6,6 +6,8 @@ import { useFetchRacks } from "./hooks/useFetchRacks";
 import AlbumsPage from "./pages/AlbumsPage";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import AlbumDetail from "./pages/AlbumDetail";
+import RandomAlbumRedirect from "./components/RandomAlbumRedirect";
+
 
 const App: React.FC = () => {
   return (
@@ -98,6 +100,8 @@ const App: React.FC = () => {
           <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/discogs/:discogsId" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/:artistSlug/:albumSlug" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/detail" element={<AlbumDetail />} />
+          <Route path="/ramdom" element={<RandomAlbumRedirect albumsCollection="albums" />} />
+          <Route path="/ramdom-p" element={<RandomAlbumRedirect albumsCollection="albums_ptes" />} />
 
         </Routes>
       </Router>

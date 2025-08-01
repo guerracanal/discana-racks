@@ -62,6 +62,24 @@ const Header = () => {
                   </a>
                 </li>
                 <li>
+                  <button
+                    onClick={() => navigate("/ramdom")}
+                    className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
+                    style={{ padding: 0 }}
+                  >
+                    Aleatorio
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate("/ramdom-p")}
+                    className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
+                    style={{ padding: 0 }}
+                  >
+                    Sorpresa
+                  </button>
+                </li>
+                <li>
                   <SpotifyButton />
                 </li>
                 <li>
@@ -144,6 +162,24 @@ const Header = () => {
                   <a href="/pendientes" className="hover:text-white text-gray-300">
                     Pendientes
                   </a>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate("/random")}
+                    className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
+                    style={{ padding: 0 }}
+                  >
+                    Aleatorio
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => navigate("/ramdom-p")}
+                    className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
+                    style={{ padding: 0 }}
+                  >
+                    Sorpresa
+                  </button>
                 </li>
                 <li>
                   <SpotifyButton />
