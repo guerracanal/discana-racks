@@ -100,8 +100,8 @@ const App: React.FC = () => {
           <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/discogs/:discogsId" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/:artistSlug/:albumSlug" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/detail" element={<AlbumDetail />} />
-          <Route path="/ramdom" element={<RandomAlbumRedirect albumsCollection="albums" />} />
-          <Route path="/ramdom-p" element={<RandomAlbumRedirect albumsCollection="albums_ptes" />} />
+          <Route path="/random" element={<RandomAlbumRedirect albumsCollection="albums" />} />
+          <Route path="/random-p" element={<RandomAlbumRedirect albumsCollection="albums_ptes" />} />
 
         </Routes>
       </Router>
