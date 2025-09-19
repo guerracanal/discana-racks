@@ -3,7 +3,7 @@ import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { useFetchAlbumDetail } from "../hooks/useFetchAlbumDetail";
 import LoadingPopup from "../components/LoadingPopup";
 import Header from "../components/Header";
-import { FaArrowLeft, FaSpotify, FaLastfm, FaExclamationTriangle, FaCalendarAlt, FaClock, FaMusic } from "react-icons/fa";
+import { FaArrowLeft, FaSpotify, FaLastfm, FaExclamationTriangle, FaCalendarAlt, FaClock, FaMusic, FaTag } from "react-icons/fa";
 import { SiDiscogs, SiGenius, SiMusicbrainz } from "react-icons/si";
 import cdIcon from "../assets/icons/cd.png";
 import vinylIcon from "../assets/icons/vinyl.png";
@@ -11,7 +11,7 @@ import cardIcon from "../assets/card.svg";
 
 const getFlagEmoji = (countryCode: string) => {
   if (countryCode.toUpperCase() === "GB-SCT") {
-    return "\u{1F3F4}\u{E0067}\u{E0062}\u{E0073}\u{E0063}\u{E0074}\u{E007F}";
+    return "🏴󠁧󠁢󠁳󠁣󠁴󠁿";
   }
   return countryCode
     .toUpperCase()
@@ -110,7 +110,7 @@ const renderDiscogsFormats = (formats: any[] | undefined) => {
   );
 };
 
-const renderInfo = (dateRelease: string | undefined, duration: number | undefined, tracks: any[]) => {
+const renderInfo = (dateRelease: string | undefined, duration: number | undefined, tracks: any[], label: string | undefined) => {
   const parts: JSX.Element[] = [];
 
   if (dateRelease) {
@@ -136,6 +136,15 @@ const renderInfo = (dateRelease: string | undefined, duration: number | undefine
       <span key="tracks" className="inline-flex items-center">
         <FaMusic className="mr-1" />
         {tracks.length}
+      </span>
+    );
+  }
+
+  if (label && label.trim() !== '') {
+    parts.push(
+      <span key="label" className="inline-flex items-center mr-2">
+        <FaTag className="mr-1" />
+        {label}
       </span>
     );
   }
@@ -449,18 +458,23 @@ const AlbumDetail: React.FC = () => {
                 {renderInfo(
                   typeof fallbackDateRelease === "string" ? fallbackDateRelease : undefined,
                   typeof fallbackDuration === "number" ? fallbackDuration : undefined,
-                  fallbackTracks
+                  fallbackTracks,
+                  album.label // Pass album.label here
                 )}
                 {fallbackGenres.length > 0 && (
                   <div>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <span className="bg-blue-600 text-white px-3 py-1 rounded-lg font-bold">
-                        {fallbackGenres[0]}
-                      </span>
-                      {fallbackGenres.slice(1).map((genre, index) => (
-                        <span key={index} className="bg-gray-700 text-gray-300 px-3 py-1 rounded-lg">
-                          {genre}
-                        </span>
+                      {fallbackGenres.map((genre, index) => (
+                        <a
+                          key={index}
+                          href={`/ap/${albumsCollection}?endpoint=genres%2F${encodeURIComponent(genre)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span className="bg-blue-600 text-white px-3 py-1 rounded-lg font-bold">
+                            {genre}
+                          </span>
+                        </a>
                       ))}
                     </div>
                   </div>
@@ -469,9 +483,16 @@ const AlbumDetail: React.FC = () => {
                   <div>
                     <div className="flex flex-wrap gap-2 mt-2 text-lg">
                       {album.mood.map((mood, index) => (
-                        <span key={index} className="bg-green-600 text-white px-3 py-1 rounded-lg">
-                          {mood}
-                        </span>
+                        <a
+                          key={index}
+                          href={`/ap/${albumsCollection}?endpoint=moods%2F${encodeURIComponent(mood)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span className="bg-green-600 text-white px-3 py-1 rounded-lg">
+                            {mood}
+                          </span>
+                        </a>
                       ))}
                     </div>
                   </div>
@@ -489,7 +510,12 @@ const AlbumDetail: React.FC = () => {
                 )}
               </div>
               <div id="description" className="p-4 bg-gray-800 rounded-lg shadow-md w-full">
-                {album.lastfm?.wiki?.summary ? (
+                {album.text && album.text.trim() !== '' ? (
+                  <p
+                    className="text-gray-300 mt-2 text-xl leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: album.text }}
+                  />
+                ) : album.lastfm?.wiki?.summary ? (
                   <p
                     className="text-gray-300 mt-2 text-xl leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: album.lastfm.wiki.summary }}
@@ -550,11 +576,6 @@ const AlbumDetail: React.FC = () => {
                       <p>
                         Hay {album.lastfm.listeners} oyentes que han scrobleado{" "}
                         {album.lastfm.playcount ? album.lastfm.playcount : "un número desconocido"} veces este álbum.
-                      </p>
-                    )}
-                    {album.lastfm?.total_most_listened_track?.name && (
-                      <p>
-                        La canción más popular es <strong>{album.lastfm.total_most_listened_track.name}{" "}</strong> con {album.lastfm.total_most_listened_track.total_playcount || 0} reproducciones
                       </p>
                     )}
                     {album.lastfm?.recently_listened && (

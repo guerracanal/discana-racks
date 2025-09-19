@@ -36,6 +36,8 @@ export interface Album {
     links?: string; // Enlaces adicionales relacionados con el álbum
     type?: string; // Tipo de álbum (e.g., "album", "single")
     date_last_modification?: string; // Fecha de última modificación
+    label?: string;
+    text?: string;
 
     lastfm?: {
         artist?: string; // Artista desde Last.fm
