@@ -68,7 +68,7 @@ const getDurationIcon = (duration: number | undefined, albumsCollection: string)
   if (!duration || typeof duration !== "number" || duration <= 0) return null;
   return (
     <a
-      href={`/ap/${albumsCollection}?endpoint=duration%2F${duration}`}
+      href={`/ap/${albumsCollection}?endpoint=duration_max%2F${duration}`}
       target="_blank"
       rel="noopener noreferrer"
       className="hover:opacity-80"
