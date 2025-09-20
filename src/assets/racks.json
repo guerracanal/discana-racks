@@ -11,6 +11,12 @@
     "description": "Cumplen años",
     "order": 2
   },
+    {
+    "title": "Relax",
+    "endpoint": "compilations/relax",
+    "description": "Relax",
+    "order": 3
+  },
   {
     "title": "Shoegaze & Dream Pop",
     "endpoint": "genres/Shoegaze/Dream Pop",

@@ -5,6 +5,24 @@
     "description": "Últimos lanzamientos musicales.",
     "order": 1
   },
+    {
+    "title": "shoegaze",
+    "endpoint": "compilations/shoegaze",
+    "description": "Música con capas de sonido y guitarras etéreas.",
+    "order": 2
+  },
+        {
+    "title": "Relax",
+    "endpoint": "compilations/relax",
+    "description": "Música Relajante",
+    "order": 3
+  },
+      {
+    "title": "japon",
+    "endpoint": "compilations/japon",
+    "description": "Música japones",
+    "order": 4
+  },
   {
     "title": "Rock",
     "endpoint": "compilations/rock",

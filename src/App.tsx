@@ -6,8 +6,7 @@ import { useFetchRacks } from "./hooks/useFetchRacks";
 import AlbumsPage from "./pages/AlbumsPage";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import AlbumDetail from "./pages/AlbumDetail";
-import RandomAlbumRedirect from "./components/RandomAlbumRedirect";
-
+import RandomAlbumPage from "./pages/RandomAlbumPage";
 
 const App: React.FC = () => {
   return (
@@ -32,7 +31,7 @@ const App: React.FC = () => {
               <HomePage
                 useFetchAlbumsHook={(albums_collection: string, endpoint: string, random: boolean) => useFetchAlbums(albums_collection, endpoint, random)}
                 useFetchRacksHook={(racks_collection: string) => useFetchRacks(racks_collection)}
-                albums_collection="albums_ptes"
+                albums_collection="pendientes"
                 racks_collection="racks_ptes"
                 random={false}
               />
@@ -94,15 +93,73 @@ const App: React.FC = () => {
               />
             }
           />
+
+          {/* Album Detail Routes */}
           <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/db/:id" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/mbid/:mbid" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/spotify/:spotifyId" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/:artistSlug?/:albumSlug?/discogs/:discogsId" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/:artistSlug/:albumSlug" element={<AlbumDetail />} />
           <Route path=":albums_collection/album/detail" element={<AlbumDetail />} />
-          <Route path="/random" element={<RandomAlbumRedirect albumsCollection="albums" />} />
-          <Route path="/random-p" element={<RandomAlbumRedirect albumsCollection="albums_ptes" />} />
-
+          
+          {/* Random Album Routes - Ahora con prefijo /random/ */}
+          <Route 
+            path="/random/:albums_collection" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/format/:format" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/year/:year" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/duration/:duration" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/label/:label" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/genres/:genres" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/moods/:moods" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/country/:country" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/artist/:artist" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/title/:title" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/compilations/:compilations" 
+            element={<RandomAlbumPage />} 
+          />
+          <Route 
+            path="/random/:albums_collection/duration_min/:duration_min" 
+            element={<RandomAlbumPage />}
+          />
+          <Route 
+            path="/random/:albums_collection/duration_max/:duration_max" 
+            element={<RandomAlbumPage />}
+          />
+          <Route 
+            path="/random/:albums_collection/releases/:releases" 
+            element={<RandomAlbumPage />} 
+          />
+          
         </Routes>
       </Router>
       <ScrollToTopButton />

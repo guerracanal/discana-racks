@@ -1,0 +1,46 @@
+.random-album-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #1f2937; /* bg-gray-800 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+  position: sticky;
+  top: 40px; /* Adjust based on main header height */
+  left: 0;
+  right: 0;
+  z-index: 40;
+  height: 60px;
+}
+
+.random-album-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700; /* font-bold */
+  color: white;
+  text-align: center;
+}
+
+.random-album-header .filters {
+  font-size: 1.5rem;
+  display: block;
+  color: #d1d5db; /* text-gray-300 */
+}
+
+.reload-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+
+}
+
+.reload-button:hover {
+  color: #60a5fa; /* some hover color */
+}
+
+.left-nav-icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}

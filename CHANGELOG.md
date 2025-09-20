@@ -25,6 +25,12 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.0.4] - 20/09/2025
+
+### Changed
+- Ramdom mejorado
+
+
 ## [1.0.3] - 02/08/2025
 
 ### Added

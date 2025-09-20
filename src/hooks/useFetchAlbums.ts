@@ -12,6 +12,10 @@ export function useFetchAlbums(albums_collection: string, endpoint: string = "",
   const filter = searchParams.get('filter') || 'all';
 
   useEffect(() => {
+    if (!albums_collection) {
+      setLoading(false);
+      return;
+    }
     const fetchData = async () => {
       const cacheKey = `${albums_collection}-${endpoint}-${filter}-${random}`;
       const cachedData = sessionStorage.getItem(cacheKey);

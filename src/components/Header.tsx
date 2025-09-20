@@ -63,7 +63,7 @@ const Header = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => navigate("/random")}
+                    onClick={() => navigate("/random/albums")}
                     className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
                     style={{ padding: 0 }}
                   >
@@ -72,7 +72,7 @@ const Header = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => navigate("/random-p")}
+                    onClick={() => navigate("/random/pendientes")}
                     className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
                     style={{ padding: 0 }}
                   >
@@ -165,7 +165,7 @@ const Header = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => navigate("/random")}
+                    onClick={() => navigate("/random/albums")}
                     className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
                     style={{ padding: 0 }}
                   >
@@ -174,7 +174,7 @@ const Header = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => navigate("/random-p")}
+                    onClick={() => navigate("/random/pendientes")}
                     className="hover:text-white text-gray-300 bg-transparent border-none cursor-pointer"
                     style={{ padding: 0 }}
                   >
