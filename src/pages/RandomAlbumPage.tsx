@@ -128,7 +128,7 @@ const RandomAlbumPage: React.FC = () => {
           <Link to={`/random/${baseCollection}/compilations/relax`}>
             <GiNightSleep size={24} className="mood-icon" />
           </Link>
-          <Link to={`/random/${baseCollection}/compilations/energetic`}>
+          <Link to={`/random/${baseCollection}/compilations/energic`}>
             <FaBolt size={24} className="mood-icon" />
           </Link>
           <Link to={`/random/${baseCollection}/duration_max/10`}>
